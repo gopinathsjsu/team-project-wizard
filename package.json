@@ -18,7 +18,8 @@
     "@tabler/icons-react": "^2.40.0",
     "embla-carousel-react": "^8.0.0-rc14",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.18.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
