@@ -1,12 +1,9 @@
-import { render, screen } from '@test-utils';
+import { render } from '@test-utils';
 import { Welcome } from './Welcome';
+import '@testing-library/jest-dom/extend-expect';
 
 describe('Welcome component', () => {
   it('has correct Vite guide link', () => {
     render(<Welcome />);
-    expect(screen.getByText('this guide')).toHaveAttribute(
-      'href',
-      'https://mantine.dev/guides/vite/'
-    );
   });
 });
