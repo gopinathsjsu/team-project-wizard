@@ -4,13 +4,13 @@ version: "1.0"
 services:
   web:
     container_name: web
-    image: theater-web:dev
+    image: ghcr.io/gopinathsjsu/team-project-wizard-web:develop
     ports:
       - 8080:80
 
   api:
     container_name: backend
-    image: theater-api:dev
+    image: ghcr.io/gopinathsjsu/team-project-wizard-api:develop
     depends_on:
       postgres:
         condition: service_healthy
