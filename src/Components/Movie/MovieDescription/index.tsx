@@ -3,9 +3,9 @@ import { Text, Card, Image, Container, Button, Flex, UnstyledButton } from '@man
 import { Movie } from '../MovieInterface';
 import { formatDate, minutesToHours } from "../../../utils/Date";
 import { IconShare }  from '@tabler/icons-react';
+import {handleOptionOverflow} from "../../../utils/String";
 
-
-const MovieDescription: React.FC<Movie> = ({ title, posterUrl, description, _id, runTime, genres, releaseDate }) => {
+const MovieDescription: React.FC<Movie> = ({ title, posterUrl, description, _id, runTime, genres, releaseDate, format, languages, certificate }) => {
 
     const handleShareClick = () => {
         const input = document.createElement("input");
@@ -20,8 +20,8 @@ const MovieDescription: React.FC<Movie> = ({ title, posterUrl, description, _id,
 
 
     return (
-        <Container px={0}>
-            <Flex direction={"row"} justify={"center"} gap="xl">
+        <Container px={0} mt="md">
+            <Flex direction={"row"} justify={"center"} gap="xl" wrap="wrap">
                 <div>
                     <Image src={posterUrl} style={{ height: 320, width: 223 }} alt={title} />
                 </div>
@@ -34,12 +34,15 @@ const MovieDescription: React.FC<Movie> = ({ title, posterUrl, description, _id,
                         </Flex>
                     </Flex>
                     <div style={{marginTop:"20px"}}>
-                        <Text size="lg">{minutesToHours(runTime)}</Text>
-                        <Text size="lg">{genres.join(", ")}</Text>
-                        <Text size="lg">{formatDate(releaseDate)}</Text>
+                        <Text size="lg">{format}</Text>
+                        <Text size="lg">{handleOptionOverflow(languages)}</Text>
                     </div>
-                    <div>
-
+                    <div style={{marginTop:"20px"}}>
+                        <Text size="lg">{`${minutesToHours(runTime)} . ${certificate} . ${formatDate(releaseDate)}`}</Text>
+                        <Text size="lg">{handleOptionOverflow(genres)}</Text>
+                    </div>
+                    <div style={{alignSelf: "flex-end", marginBottom:0}}>
+                        <Button fullWidth>Book Now</Button>
                     </div>
                 </div>
             </Flex>
