@@ -9,6 +9,9 @@ const apiClient = axios.create({
   
 
 export const getAllMovies = () => {
-    console.log("This is the backend URL ", import.meta.env.VITE_BACKEND_URL);
   return apiClient.get('movies/getAll');
+};
+
+export const getMovie = (_id:string | undefined) => {
+  return apiClient.get(`movies/get/${_id}`);
 };
