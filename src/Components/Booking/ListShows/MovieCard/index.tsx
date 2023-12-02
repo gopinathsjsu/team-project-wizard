@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, Image, Container, Button, Flex, UnstyledButton, Chip } from '@mantine/core';
-import { Movie } from '../../../Movie/MovieInterface';
+import { Movie } from '../../../../Interfaces/MovieInterface';
 const MovieCard: React.FC<Movie> = 
 ({  title, 
     _id, 
