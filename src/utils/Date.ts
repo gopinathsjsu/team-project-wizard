@@ -15,7 +15,13 @@ const formatDate = (dateString: string ="2022-03-24T00:00:00.000Z"): string => {
     return format(date, 'd MMM, yyyy'); // Formats the date
 };
 
-export {minutesToHours, formatDate};
+const convertTo12HourFormat = (timestamp: string): string => {
+    const time = new Date(timestamp);
+    return time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: true, timeZone: 'UTC' });
+
+};
+
+export {minutesToHours, formatDate, convertTo12HourFormat};
 
 
 

@@ -10,4 +10,6 @@ export interface Showtime {
     createdAt: string;
     updatedAt: string;
     __v: number;
+    screenName?:  string;
+    screenType?: string;
 }
