@@ -17,7 +17,9 @@ export function BaseLayout(props: React.PropsWithChildren<any>) {
         </Container>
       </AppShell.Header>
       <AppShell.Main>
-        {props.children} 
+        <div style={{maxWidth: 1240, margin:"auto"}}>
+          {props.children} 
+        </div>
       </AppShell.Main>
     </AppShell>
   );                                       

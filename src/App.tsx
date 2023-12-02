@@ -5,6 +5,7 @@ const pages:any = import.meta.glob("./pages/**/*.tsx", { eager: true });
 
 function App() {
   const routes = [];
+
   for (const path of Object.keys(pages)) {
     const fileName = path.match(/\.\/pages\/(.*)\.tsx$/)?.[1];
     if (!fileName) {
@@ -14,7 +15,6 @@ function App() {
     const normalizedPathName = fileName.includes("$")
       ? fileName.replace("$", ":")
       : fileName.replace(/\/index/, "");
-  
     routes.push({
         path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
         Element: pages[path].default,
@@ -24,7 +24,7 @@ function App() {
     });
     // ...
   }
-  
+  console.log(routes);
   const router = createBrowserRouter(
     routes.map(({ Element, ErrorBoundary, ...rest }) => ({
       ...rest,
