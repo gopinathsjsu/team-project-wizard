@@ -10,11 +10,6 @@ export function BaseLayout(props: React.PropsWithChildren<any>) {
   return (
     <AppShell
     header={{ height: { base: 48, sm: 60, lg: 76 } }}
-    navbar={{
-      width: 300,
-      breakpoint: 'sm',
-      collapsed: { mobile: !mobileOpened, desktop: !desktopOpened },
-    }}
     >
       <AppShell.Header>
         <Container px={0} size="40rem">

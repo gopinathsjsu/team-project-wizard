@@ -1,6 +1,6 @@
 export interface Movie {
-    id: string; // Assuming id is a string type
-    movieId: string;
+    _id: string; // Assuming id is a string type
+    movieId?: string;
     title: string;
     posterUrl: string;
   
