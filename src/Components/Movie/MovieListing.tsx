@@ -388,14 +388,14 @@ const MovieListing = () => {
   ];
   return (
     <Flex 
-      style={{ maxWidth: 1240, margin: 'auto' }} 
+      style={{ margin: 'auto' }} 
       gap="md"
       justify="center"
       align="flex-start"
       direction="row"
       wrap="wrap">
         { movies.map((movie) =>(
-              <MovieBanner {...movie} key={movie._id}/>
+            <MovieBanner {...movie} key={movie._id}/>
         ))}
     </Flex>
   )
