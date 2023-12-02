@@ -4,7 +4,7 @@ import MovieDescription from '../../Components/Movie/MovieDescription';
 import { useParams } from 'react-router-dom';
 import { Movie } from '../../Components/Movie/MovieInterface';
 import {getMovie} from "../../api/moviesApi";
-
+import YouTubeVideoEmbed from '../../Components/Video';
 
 function MovieDetail() {
   const {moviedetail} = useParams();
@@ -22,6 +22,7 @@ function MovieDetail() {
     }, []);
   return (
     <BaseLayout>
+      <YouTubeVideoEmbed movieTrailerUrl={movie.movieTrailerUrl} />
       <MovieDescription {...movie} />
     </BaseLayout>
   )
