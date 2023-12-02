@@ -1,10 +1,20 @@
 import { Button, Container, Flex } from '@mantine/core';
 import React, { useState } from 'react';
+import { useAppContext } from '../../../../Context/AppContext';
 
-const Calendar: React.FC = () => {
-  const currentDate = new Date();
+interface CalendarProps{
+  currentDate: Date,
+  handleBooking: (bookingDate: Date) => void
+}
+const Calendar: React.FC<CalendarProps> = ({currentDate, handleBooking}) => {
+
   const daysToShow = 7; // Number of days to display
   const [selectedDate, setSelectedDate] = useState(currentDate);
+  
+  const handleSelection = (date:Date) =>{
+    setSelectedDate(date);
+    handleBooking(date);
+  };
   
   // Generates an array of dates starting from the current date
   const upcomingDates = Array.from({ length: daysToShow }, (_, index) => {
@@ -25,8 +35,8 @@ const Calendar: React.FC = () => {
         <Flex 
           key={index} 
           style={{ margin: '5px', whiteSpace: 'pre-line' }} 
-          className={`makePointer change-on-hover ${date.getDate()===selectedDate.getDate() ? "fill" : ""}`}
-          onClick={()=>setSelectedDate(date)}>
+          className={`makePointer ${date.getDate()===selectedDate.getDate() ? "fill" : "change-on-hover"}`}
+          onClick={()=>handleSelection(date)}>
           {formatDate(date)}
         </Flex>
       ))}
