@@ -1,3 +1,12 @@
 .makePointer:hover{
-    cursor: pointer
+    cursor: pointer;
+}
+
+.change-on-hover:hover{
+    color: #f84464;
+}
+
+.fill{
+    background-color:#f84464;
+    color: #ffffff;
 }

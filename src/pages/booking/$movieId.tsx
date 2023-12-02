@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react'
 import BaseLayout from '../../Components/Layouts/BaseLayout'
-import MovieCard from '../../Components/Booking/ListShows/MovieCard';
+import MovieHeader from '../../Components/Booking/ListShows/MovieCard';
 import { useParams } from 'react-router-dom';
 import { Movie } from '../../Components/Movie/MovieInterface';
 import {getMovie} from "../../api/moviesApi";
 import Loading from '../../Components/Loading';
+import Calendar from '../../Components/Booking/ListShows/Calendar';
 
 function MovieDetail() {
   const {movieid} = useParams();
@@ -24,7 +25,8 @@ function MovieDetail() {
     <BaseLayout>
       {isLoading ? <Loading/> : 
         <>
-          <MovieCard {...movie} />
+          <MovieHeader {...movie} />
+          <Calendar />
         </>
       }
       
