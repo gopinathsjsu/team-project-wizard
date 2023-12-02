@@ -1,6 +1,8 @@
 import './App.css'
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MantineProvider} from '@mantine/core';
+import {AppContextProvider} from "./Context/AppContext";
+
 const pages:any = import.meta.glob("./pages/**/*.tsx", { eager: true });
 
 function App() {
@@ -35,7 +37,9 @@ function App() {
 
   return (
     <MantineProvider>
-      <RouterProvider router={router}/>
+      <AppContextProvider>
+        <RouterProvider router={router}/>
+      </AppContextProvider>
     </MantineProvider>
   )
 }
