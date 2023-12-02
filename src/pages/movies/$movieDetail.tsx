@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import BaseLayout from '../../Components/Layouts/BaseLayout'
 import MovieDescription from '../../Components/Movie/MovieDescription';
 import { useParams } from 'react-router-dom';
-import { Movie } from '../../Components/Movie/MovieInterface';
+import { Movie } from '../../Interfaces/MovieInterface';
 import {getMovie} from "../../api/moviesApi";
 import YouTubeVideoEmbed from '../../Components/Video';
 import Loading from '../../Components/Loading';

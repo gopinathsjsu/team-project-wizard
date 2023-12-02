@@ -1,6 +1,6 @@
 import '@mantine/core/styles.css';
 import { Text,  Card, Image } from '@mantine/core';
-import { Movie } from '../MovieInterface';
+import { Movie } from '../../../Interfaces/MovieInterface';
 import { useNavigate } from 'react-router-dom';
 
 

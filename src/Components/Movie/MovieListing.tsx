@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 import MovieBanner from './MovieBanner/index';
-import { Movie } from './MovieInterface';
+import { Movie } from '../../Interfaces/MovieInterface';
 import { getAllMovies } from '../../api/moviesApi';
 import { Flex } from '@mantine/core';
 

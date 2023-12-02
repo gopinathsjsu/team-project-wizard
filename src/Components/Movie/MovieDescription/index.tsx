@@ -1,6 +1,6 @@
 import React from "react";
 import { Text, Image, Container, Button, Flex, UnstyledButton } from '@mantine/core';
-import { Movie } from '../MovieInterface';
+import { Movie } from '../../../Interfaces/MovieInterface';
 import { formatDate, minutesToHours } from "../../../utils/Date";
 import { IconShare } from '@tabler/icons-react';
 import { handleOptionOverflow } from "../../../utils/String";
