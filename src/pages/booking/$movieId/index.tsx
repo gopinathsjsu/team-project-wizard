@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react'
-import BaseLayout from '../../Components/Layouts/BaseLayout'
-import MovieHeader from '../../Components/Booking/ListShows/MovieCard';
+import BaseLayout from '../../../Components/Layouts/BaseLayout'
+import MovieHeader from '../../../Components/Booking/ListShows/MovieCard';
 import { useParams } from 'react-router-dom';
-import { Movie } from '../../Interfaces/MovieInterface';
-import {getMovie} from "../../api/moviesApi";
-import Loading from '../../Components/Loading';
-import Calendar from '../../Components/Booking/ListShows/Calendar';
-import DisplayShows from '../../Components/Booking/ListShows/DisplayShows';
-import { Theatre } from '../../Interfaces/TheatreInterface';
+import { Movie } from '../../../Interfaces/MovieInterface';
+import {getMovie} from "../../../api/moviesApi";
+import Loading from '../../../Components/Loading';
+import Calendar from '../../../Components/Booking/ListShows/Calendar';
+import DisplayShows from '../../../Components/Booking/ListShows/DisplayShows';
+import { Theatre } from '../../../Interfaces/TheatreInterface';
 
 
 function MovieDetail() {

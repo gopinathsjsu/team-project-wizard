@@ -42,3 +42,12 @@
   cursor: not-allowed; /* Change cursor to indicate non-clickability */
   pointer-events: none; /* Prevents any mouse events on the button */
 }
+
+
+.mr40{
+  margin-right: 40px;
+}
+
+.mr5{
+  margin-right: 5px;
+}
