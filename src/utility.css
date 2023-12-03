@@ -1,0 +1,53 @@
+.makePointer:hover{
+  cursor: pointer;
+}
+.bg-secondry{
+  background-color: #333545;
+}
+.change-on-hover:hover{
+  color: #f84464;
+}
+
+.fill{
+  background-color:#f84464;
+  color: #ffffff;
+}
+
+.secondary-button {
+  border: 1px solid #999;
+  background-color: #ffffff;
+  padding: 4px;
+  border-radius: 4px;
+  width: 108px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  position: relative;
+}
+
+/* Styles for success state */
+.success {
+  background-color: #ffffff; /* Light green background */
+  border: 1px solid #4caf50; /* Green border */
+  color: #2e7d32; /* Green text */
+}
+
+/* Styles for disabled state */
+.disabled {
+  background-color: #f0f0f0; /* Light grey background */
+  border: 1px solid #ccc; /* Grey border */
+  color: #999; /* Grey text */
+  cursor: not-allowed; /* Change cursor to indicate non-clickability */
+  pointer-events: none; /* Prevents any mouse events on the button */
+}
+
+
+.mr40{
+  margin-right: 40px;
+}
+
+.mr5{
+  margin-right: 5px;
+}
