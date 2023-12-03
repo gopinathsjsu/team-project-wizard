@@ -10,21 +10,21 @@ const MovieCard: React.FC<Movie> =
     certificate }) => {
 
     return (
-        <Container px={0} mt="md" style={{width:""}}>
-            <Flex direction={"row"} gap="xl">
-                <div>
-                    <Flex direction={"row"} gap="sm">
+        <Flex m={0} style={{maxWidth:"1920px" ,color: "#ffffff"}} justify="center" bg="#333545">
+            <Flex direction={"row"} gap="xl" ml="md"  w={{ base: 100, sm: 400, lg: 1040 }}>
+                <div style={{width:"100%"}}>
+                    <Flex direction={"row"} gap="sm" mt="sm">
                         <Text size="32px">{title} ({format}) - {languages?.[0]}</Text>
                     </Flex>
-                    <Flex direction="row" style={{ marginTop: "20px" }} align={"center"}>
-                        <Chip size="lg">{`${certificate}`}</Chip>
-                        <Flex direction="row" gap="xs">
+                    <Flex direction="row" style={{ marginTop: "20px", marginBottom:"10px" }} align={"center"} gap="20px">
+                        <Chip size="sm" className="bg-secondry">{`${certificate}`}</Chip>
+                        <Flex direction="row" gap="xxs">
                         {genres.map((genre)=>(<Chip variant="outline">{genre}</Chip>))}
                         </Flex>
                     </Flex>
                 </div>
             </Flex>
-        </Container>
+        </Flex>
     );
 }
 

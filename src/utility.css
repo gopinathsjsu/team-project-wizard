@@ -1,7 +1,9 @@
 .makePointer:hover{
   cursor: pointer;
 }
-
+.bg-secondry{
+  background-color: #333545;
+}
 .change-on-hover:hover{
   color: #f84464;
 }

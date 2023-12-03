@@ -4,14 +4,17 @@ import { Theatre } from '../../../../Interfaces/TheatreInterface';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { Showtime } from '../../../../Interfaces/ShowTimeInterface';
 import { convertTo12HourFormat } from '../../../../utils/Date';
-
+import { useNavigate } from 'react-router-dom';
 interface DisplayShowsProps {
   theatres: Theatre[]
 }
 
 
 const DisplayShows: React.FC<DisplayShowsProps> = ({theatres}) => {
-
+  const navigator = useNavigate();
+  const handleNavigation = (movieId: string, showId: string, screenId: string) => {
+    navigator(`/booking/${movieId}/selection?showId=${showId}&screenId=${screenId}`);
+};
   // normalized theatre array based on on show time
   const theatresArray = theatres.map((theatre)=>{
       let showsArray: Showtime[] = [];
@@ -44,7 +47,10 @@ const DisplayShows: React.FC<DisplayShowsProps> = ({theatres}) => {
             <Flex direction={"row"} gap="md" align="center" mb="sm">
               {theatre.shows.map((show)=>(
                 <Tooltip label={`$ ${show.price}`} transitionProps={{ transition: 'skew-down', duration: 400 }}>
-                  <button className={`secondry-button ${show.isActive? "success":"disabled"}`}>
+                  <button
+                    onClick={()=>handleNavigation(show.movieId, show._id, show.screenId)}
+                    className={`secondry-button makePointer 
+                    ${show.isActive? "success":"disabled"}`}>
                     <Text size="sm">{convertTo12HourFormat(show.startTime)}</Text>
                     {show.screenType==="IMAX" && <Text size="xs">IMAX</Text>}
                   </button>

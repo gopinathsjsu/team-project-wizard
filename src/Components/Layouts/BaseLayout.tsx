@@ -3,9 +3,6 @@ import { IconBrandGoogleFilled, IconChevronRight, IconGauge } from '@tabler/icon
 import { useDisclosure } from '@mantine/hooks';
 
 export function BaseLayout(props: React.PropsWithChildren<any>) {
-    const [mobileOpened, { toggle: toggleMobile }] = useDisclosure();
-    const [desktopOpened, { toggle: toggleDesktop }] = useDisclosure(true);
-  
 
   return (
     <AppShell
@@ -17,7 +14,7 @@ export function BaseLayout(props: React.PropsWithChildren<any>) {
         </Container>
       </AppShell.Header>
       <AppShell.Main>
-        <div style={{maxWidth: 1240, margin:"auto"}}>
+        <div style={{ margin:"auto"}}>
           {props.children} 
         </div>
       </AppShell.Main>

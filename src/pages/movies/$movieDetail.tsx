@@ -14,7 +14,7 @@ function MovieDetail() {
     useEffect(() => {
         getMovie(moviedetail)
         .then(response => {
-          setMovie(response.data.movie);
+          setMovie(response.data.data.movie);
           setIsLoading(false);
         })
         .catch(error => {

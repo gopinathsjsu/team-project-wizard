@@ -21,8 +21,8 @@ function MovieDetail() {
   useEffect(() => {
       getMovie(movieid)
       .then(response => {
-        setMovie(response.data.movie);
-        setTheatres(response.data.theatres);
+        setMovie(response.data.data.movie);
+        setTheatres(response.data.data.theatres);
         setIsLoading(false);
       })
       .catch(error => {

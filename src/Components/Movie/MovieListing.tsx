@@ -9,7 +9,8 @@ const MovieListing = () => {
   useEffect(() => {
     getAllMovies()
       .then(response => {
-        setMovies(response.data.movies);
+        console.log("Getting Movies ",response.data )
+        setMovies(response.data.data);
       })
       .catch(error => {
         console.error('Error fetching movies:', error);
@@ -401,4 +402,4 @@ const MovieListing = () => {
   )
 }
 
-export default MovieListing
+export default MovieListing;
