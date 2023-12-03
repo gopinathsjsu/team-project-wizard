@@ -13,10 +13,8 @@ function App() {
     if (!fileName) {
       continue;
     }
-  
-    const normalizedPathName = fileName.includes("$")
-      ? fileName.replace("$", ":")
-      : fileName.replace(/\/index/, "");
+    let normalizedPathName = fileName.replace(/\/index/, "");
+    normalizedPathName = normalizedPathName.replace("$", ":") ;
     routes.push({
         path: fileName === "index" ? "/" : `/${normalizedPathName.toLowerCase()}`,
         Element: pages[path].default,
