@@ -6,6 +6,7 @@ import { IconShare } from '@tabler/icons-react';
 import { handleOptionOverflow } from "../../../utils/String";
 import { useNavigate } from "react-router-dom";
 import { handleShareClick } from "../../../utils/share";
+
 const MovieDescription: React.FC<Movie> = 
 ({  title, 
     posterUrl, 
@@ -20,17 +21,18 @@ const MovieDescription: React.FC<Movie> =
 
     const navigator = useNavigate();
 
+
     const handleNavigation = () => {
         navigator(`/booking/${_id}`);
     };
 
     return (
         <Container px={0} mt="md" mih={320}>
-            <Flex direction={"row"} justify={"center"} gap="xl" wrap="wrap">
+            <Flex direction={"row"} justify={"center"} gap="xl" wrap="wrap" pos="relative">
                 <div>
                     <Image src={posterUrl} style={{ height: 320, width: 223 }} alt={title} />
                 </div>
-                <div>
+                <div style={{minHeight: "320px", maxWidth: "260px"}}>
                     <Flex direction={"row"} justify={"space-between"}>
                         <Text size="36px" mt="5px" fw={700}>{title}</Text>
                         <Flex direction={"column"}>
@@ -46,8 +48,8 @@ const MovieDescription: React.FC<Movie> =
                         <Text size="lg">{`${minutesToHours(runTime)} . ${certificate} . ${formatDate(releaseDate)}`}</Text>
                         <Text size="lg">{handleOptionOverflow(genres)}</Text>
                     </div>
-                    <div style={{ marginBottom: 0 }}>
-                        <Button fullWidth onClick={handleNavigation}>Book Now</Button>
+                    <div style={{ bottom: 0, position:"absolute", width: "260px" }}>
+                        <Button fullWidth bottom={0} onClick={handleNavigation}>Book Now</Button>
                     </div>
                 </div>
             </Flex>
