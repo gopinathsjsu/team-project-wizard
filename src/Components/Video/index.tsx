@@ -10,7 +10,7 @@ const YouTubeVideoEmbed: React.FC<VideoProps> = ({ movieTrailerUrl }) => {
         width="100%"
         height="315"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-        src={"https://www.youtube.com/embed/NgBoMJy386M?si=ntu1tHdgMqCpIHYw"}
+        src={movieTrailerUrl || "https://www.youtube.com/embed/NgBoMJy386M?si=ntu1tHdgMqCpIHYw"}
         frameBorder="0"
         title="YouTube Video"
         allowFullScreen
