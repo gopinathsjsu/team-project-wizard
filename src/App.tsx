@@ -1,5 +1,7 @@
 import './App.css'
 import "./animation.css";
+import '@mantine/dates/styles.css';
+
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MantineProvider, createTheme, MantineColorsTuple } from '@mantine/core';
 import {AppContextProvider} from "./Context/AppContext";
