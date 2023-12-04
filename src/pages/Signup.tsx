@@ -1,4 +1,3 @@
-import React from 'react'
 import '@mantine/core/styles.css';
 import { Container, PasswordInput, Text, Divider, Button, SimpleGrid, Center } from '@mantine/core';
 import InputBox from '../Components/InputBox';

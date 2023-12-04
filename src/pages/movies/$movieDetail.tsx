@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import BaseLayout from '../../Components/Layouts/BaseLayout'
 import MovieDescription from '../../Components/Movie/MovieDescription';
 import { useParams } from 'react-router-dom';
