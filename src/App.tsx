@@ -1,9 +1,10 @@
 import './App.css'
+import "./animation.css";
 import '@mantine/dates/styles.css';
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { MantineProvider} from '@mantine/core';
-import {AppContextProvider} from "./Context/AppContext";
 
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import { MantineProvider, createTheme, MantineColorsTuple } from '@mantine/core';
+import {AppContextProvider} from "./Context/AppContext";
 const pages:any = import.meta.glob("./pages/**/*.tsx", { eager: true });
 
 function App() {
@@ -34,8 +35,29 @@ function App() {
     }))
   );
 
+  const showiz: MantineColorsTuple = [
+    "#ffebeb",
+    "#fbd6d7",
+    "#f0abae",
+    "#e67d81",
+    "#de575c",
+    "#d93e44",
+    "#d83038",
+    "#c0232a",
+    "#ab1c24",
+    "#96111d"
+  ];
+
+  const theme = createTheme({
+    primaryColor: 'showiz',
+    colors: {
+      showiz
+    }
+  });
+  
+  
   return (
-    <MantineProvider>
+    <MantineProvider theme={theme}>
       <AppContextProvider>
         <RouterProvider router={router}/>
       </AppContextProvider>
