@@ -4,12 +4,24 @@ import InputBox from '../Components/InputBox';
 import BasicAppShell from '../Components/Layouts/Onboarding';
 import { IconBrandGoogleFilled, IconBrandMeta } from '@tabler/icons-react';
 import { Link } from 'react-router-dom';
+import { Form, useForm } from '@mantine/form';
 
 function signup() {
+  const form = useForm({
+    initialValues: {
+      email: '',
+      termsOfService: false,
+    },
+
+    validate: {
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : 'Invalid email'),
+    },
+  });
   return (
     <BasicAppShell>
     <Container px={0} size="30rem">
-      <InputBox label={"Username or email"} placeholder={"ex: john.doe@hotmail.com"} />
+      <InputBox label={"Name"} placeholder={"ex: John Doe"} />
+      <InputBox label={"email"} placeholder={"ex: john.doe@hotmail.com"} />
       <PasswordInput label={"Enter a Password"} />
       <PasswordInput label={"Confirm Password"} />
       <Button variant="filled" size="md" mt="xs" >Sign Up</Button>
