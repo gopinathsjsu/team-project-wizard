@@ -5,3 +5,8 @@ export interface NewUser {
   email: string;
   memberShipType: string;
 }
+
+export interface LoginUser{
+  email: string,
+  password: string
+}

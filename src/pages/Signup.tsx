@@ -5,7 +5,7 @@ import BasicAppShell from '../Components/Layouts/Onboarding';
 import { IconArrowNarrowRight, IconUserPlus } from '@tabler/icons-react';
 import { signupUser } from '../api/moviesApi';
 
-function Demo() {
+function Signup() {
   const [active, setActive] = useState(0);
 
   const form = useForm({
@@ -117,4 +117,4 @@ function Demo() {
   );
 }
 
-export default Demo;
+export default Signup;

@@ -2,8 +2,7 @@ import axios from 'axios';
 import { Theatre } from '../Interfaces/TheatreInterface';
 import { Screen } from '../Interfaces/ScreenInterface';
 import { Showtime } from '../Interfaces/ShowTimeInterface';
-import { User } from '../Interfaces/UserInterface';
-import { NewUser } from '../Interfaces/newUserInterface';
+import { LoginUser, NewUser } from '../Interfaces/OnboardingInterface';
 
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -59,6 +58,10 @@ export const getAllShowTimes = ()=>{
   return apiClient.get('showTimes/getAll')
 }
 
-export const signupUser = (showTime: NewUser)=>{
-  return apiClient.post(`user/signup`,showTime)
+export const signupUser = (signupData: NewUser)=>{
+  return apiClient.post(`user/signup`,signupData);
+}
+
+export const loginUser = (loginData: LoginUser)=>{
+  return apiClient.post(`user/login`,loginData);
 }

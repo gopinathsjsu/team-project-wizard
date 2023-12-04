@@ -1,31 +1,54 @@
-import '@mantine/core/styles.css';
-import { Container, PasswordInput, Text, Divider, Button, SimpleGrid, Center } from '@mantine/core';
-import InputBox from '../Components/InputBox';
+import {  Button, TextInput, PasswordInput, Image, Box } from '@mantine/core';
+import { useForm } from '@mantine/form';
 import BasicAppShell from '../Components/Layouts/Onboarding';
-import { IconBrandGoogleFilled, IconBrandMeta } from '@tabler/icons-react';
-import { Link } from 'react-router-dom';
+import { loginUser } from '../api/moviesApi';
+
+function Signup() {
+
+  const form = useForm({
+    initialValues: {
+      email: '',
+      password: '',
+    },
+
+    validate: (values) => {
+        return {
+          email: /^\S+@\S+$/.test(values.email) ? null : 'Invalid email',
+          password:
+            values.password.length < 6 ? 'Password must include at least 6 characters' : null,
+        };
+    },
+  });
 
 
 
-const Index = () => {
+  const handleLogin = async () => {
+    const response = await loginUser(form.values);
+    console.log(response);
+  }
   return (
     <BasicAppShell>
-      <Container px={0} size="30rem">
-        <InputBox label={"Username or Email"} placeholder={"ex: john.doe@hotmail.com"} />
-        <PasswordInput label={"Enter a password"} />
-        <Text size="xs" c="blue" mt="xs">Forgot Password?</Text>
-        <Button variant="filled" size="md" mt="xs" >Login</Button>
-        <Divider mt="sm" label="or" labelPosition="center" />
-        <Text size="sm" mt="s">Don't have an Account yet? <Link to="../signup">Sign Up</Link></Text>
-        <Center mt="sm">
-          <SimpleGrid cols={2} maw={400} >
-            <Button variant="default" c={"#4285F4"}><IconBrandGoogleFilled /></Button>
-            <Button variant="default" c={"#4267B2"}><IconBrandMeta /></Button>
-          </SimpleGrid>
-        </Center>
-      </Container>
+    <Box maw={400} mx="auto">
+        <Image
+          h={300}
+          fit="contain"
+          radius="50%" src="https://ik.imagekit.io/vclgut93d/WizardWelcome.png?updatedAt=1701667168292"
+        />
+      <form onSubmit={form.onSubmit(console.log)}>
+        <TextInput mt="sm" label="Email" placeholder="Email" {...form.getInputProps('email')} />
+        <PasswordInput
+          mt="md"
+          label="Password"
+          placeholder="Password"
+          {...form.getInputProps('password')}
+        />
+        <Button type="submit" mt="sm" onClick={handleLogin}>
+          Login
+        </Button>
+      </form>
+    </Box>
     </BasicAppShell>
   );
 }
 
-export default Index;
+export default Signup;
