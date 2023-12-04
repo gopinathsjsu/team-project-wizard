@@ -1,51 +1,21 @@
 import React, { useState } from 'react';
 import { Button, Container, Flex } from '@mantine/core';
 import { Seats } from '../../Interfaces/SeatInterface';
+interface seatMatrixProps {
+  seats: Seats,
+  handleSeatClick: (rowKey: string, index:any) => void
+}
+const SeatMatrix: React.FC<seatMatrixProps> = ({seats, handleSeatClick}) => {
 
-const SeatMatrix: React.FC = () => {
-  const [seats, setSeats] = useState<Seats>({
-    "A": [
-      {"col": "1", "isAvailable": false, "isSelected": false},
-      {"col": "2", "isAvailable": true, "isSelected": false},
-      {"col": "3", "isAvailable": true, "isSelected": false},
-      {"col": "4", "isAvailable": true, "isSelected": false},
-      {"col": "5", "isAvailable": true, "isSelected": false},
-      {"col": "6", "isAvailable": true, "isSelected": false},
-      {"col": "7", "isAvailable": true, "isSelected": false},
-      {"col": "8", "isAvailable": true, "isSelected": false},
-      {"col": "9", "isAvailable": true, "isSelected": false},
-      {"col": "10", "isAvailable": true, "isSelected": false},
-      {"col": "11", "isAvailable": true, "isSelected": false},
-      {"col": "12", "isAvailable": true, "isSelected": false}
-    ],
-    "B": [
-      {"col": "1", "isAvailable": true, "isSelected": false},
-      {"col": "2", "isAvailable": true, "isSelected": false},
-      {"col": "3", "isAvailable": true, "isSelected": false},
-      {"col": "4", "isAvailable": true, "isSelected": false},
-      {"col": "5", "isAvailable": true, "isSelected": false},
-      {"col": "6", "isAvailable": true, "isSelected": false},
-      {"col": "7", "isAvailable": true, "isSelected": false},
-      {"col": "8", "isAvailable": true, "isSelected": false},
-      {"col": "9", "isAvailable": true, "isSelected": false},
-      {"col": "10", "isAvailable": true, "isSelected": false},
-      {"col": "11", "isAvailable": true, "isSelected": false},
-      {"col": "12", "isAvailable": true, "isSelected": false}
-    ]
-  });
-
-  const handleSeatClick = (rowKey: string, colIndex: number) => {
-    const updatedSeats = { ...seats };
-    const seat = updatedSeats[rowKey][colIndex];
-    if (seat.isAvailable) {
-      seat.isSelected = !seat.isSelected;
-      setSeats(updatedSeats);
-    }
-  };
 
   return (
     <Container p="lg">
-      
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
+        <svg width="400" height="100" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 10,50 Q 200,10 390,50" stroke="black" fill="transparent"/>
+        </svg>
+      </div>
+
       <Flex direction="column">
         {Object.keys(seats).map((rowKey) => (
           <div key={rowKey} style={{ display: 'flex', marginBottom: '10px', justifyContent: "center" }}>
