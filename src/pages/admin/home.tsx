@@ -3,6 +3,8 @@ import { IconPhoto, IconMessageCircle, IconSettings} from '@tabler/icons-react';
 import BasicAppShell from '../../Components/Layouts/Onboarding';
 import TheaterAdmin from '../../Components/Admin/TheaterAdmin';
 import ScreenAdmin from '../../Components/Admin/ScreenAdmin';
+import ShowTimeAdmin from '../../Components/Admin/ShowTimeAdmin';
+// import ShowTimeAdmin from '../../Components/Admin/ShowTimeAdmin';
 
 
 
@@ -27,8 +29,8 @@ function AdminHome() {
                             <Tabs.Tab value="screens" leftSection={<IconMessageCircle style={iconStyle} />}>
                                 Screens
                             </Tabs.Tab>
-                            <Tabs.Tab value="movies" leftSection={<IconSettings style={iconStyle} />}>
-                                Movies
+                            <Tabs.Tab value="showTime" leftSection={<IconSettings style={iconStyle} />}>
+                                Show Time
                             </Tabs.Tab>
                         </Tabs.List>
 
@@ -38,10 +40,8 @@ function AdminHome() {
                         <Tabs.Panel value="screens">
                            <ScreenAdmin></ScreenAdmin>
                         </Tabs.Panel>
-                        <Tabs.Panel value="movies">
-                            <Container size="md" {...demoProps}>
-                                movies tab content
-                            </Container>
+                        <Tabs.Panel value="showTime">
+                          <ShowTimeAdmin></ShowTimeAdmin>
                         </Tabs.Panel>
                     </Tabs>
                 </Container>

@@ -1,4 +1,5 @@
 import './App.css'
+import '@mantine/dates/styles.css';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { MantineProvider} from '@mantine/core';
 import {AppContextProvider} from "./Context/AppContext";

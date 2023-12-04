@@ -4,7 +4,6 @@ import { addNewScreen, editNewScreen, getAllScreens, getAllTheatres } from "../.
 import { ActionIcon, Button, Container, Grid, Group, Modal, NumberInput, Select, Table, TextInput } from "@mantine/core";
 import { IconPencil, IconX } from "@tabler/icons-react";
 import { Screen } from "../../Interfaces/ScreenInterface";
-import { Theatre } from "../../Interfaces/TheatreInterface";
 
 const defaultScreen = {
     _id: "",
@@ -161,7 +160,7 @@ function ScreenAdmin() {
                         <NumberInput
                             label="Columns"
                             placeholder="95126"
-                            value={selectedScreen.rows}
+                            value={selectedScreen.columns}
                             onChange={(event) => {
                                 setSelectedScreen({ ...selectedScreen, columns: parseInt(`${event}`) })
                             }}
@@ -182,7 +181,8 @@ function ScreenAdmin() {
                     label="Select Theater"
                     data={theatherList}
                     value={selectedScreen.theatreId}
-                    clearable
+                    onChange={(value)=>{setSelectedScreen({...selectedScreen,theatreId:value??''})}}
+
                 />
                 <Group justify="center">
                     <Button variant="filled" onClick={() => {

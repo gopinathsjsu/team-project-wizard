@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { Theatre } from '../Interfaces/TheatreInterface';
 import { Screen } from '../Interfaces/ScreenInterface';
+import { Showtime } from '../Interfaces/ShowTimeInterface';
 
 const apiClient = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
@@ -41,4 +42,17 @@ export const addNewScreen = (screen:Screen)=>{
 
 export const editNewScreen = (screen:Screen,id:string)=>{
   return apiClient.post(`screens/update/${id}`,screen)
+}
+
+
+export const addNewShowTime = (showTime:Showtime)=>{
+  return apiClient.post(`showTimes/add`,showTime)
+}
+
+export const updateShowTime = (showTime:Showtime,id:string)=>{
+  return apiClient.post(`showTimes/update/${id}`,showTime)
+}
+
+export const getAllShowTimes = ()=>{
+  return apiClient.get('showTimes/getAll')
 }

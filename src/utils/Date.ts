@@ -10,9 +10,9 @@ function minutesToHours(n: number = 150) {
     return rhours + "h " + rminutes + "m";
 }
 
-const formatDate = (dateString: string ="2022-03-24T00:00:00.000Z"): string => {
+const formatDate = (dateString: string ="2022-03-24T00:00:00.000Z", showTime:boolean = false): string => {
     const date = parseISO(dateString); // Converts the string to a Date object
-    return format(date, 'd MMM, yyyy'); // Formats the date
+    return showTime?format(date,'d MMM yyyy HH:MM:SS'):format(date, 'd MMM, yyyy'); // Formats the date
 };
 
 const convertTo12HourFormat = (timestamp: string): string => {
