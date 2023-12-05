@@ -126,13 +126,17 @@ router.post('/book', async (req, res) => {
 
 router.post('/cancel', async (req, res) => {
     try {
-        const { userId } = req.body;
+        const { transactionId } = req.body;
 
-        if (!userId) {
-            return res.status(400).json({ message: 'User ID is required' });
+        // if (!userId) {
+        //     return res.status(400).json({ message: 'User ID is required' });
+        // }
+
+        if (!transactionId) {
+            return res.status(400).json({ message: 'Transaction ID is required' });
         }
 
-        const ticket = await Ticket.findOne({ userId: userId });
+        const ticket = await Ticket.findOne({ transactionId: transactionId });
         if (!ticket) {
             return res.status(404).json({ message: 'Ticket not found' });
         }
