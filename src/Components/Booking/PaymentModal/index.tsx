@@ -5,6 +5,7 @@ import { Seats } from "../../../Interfaces/SeatInterface";
 import { User } from "../../../Interfaces/UserInterface";
 import { useState } from "react";
 import { bookTicket } from "../../../api/moviesApi";
+import { useNavigate } from "react-router-dom";
 
 interface paymentModalProps{
     seats: Seats,
@@ -16,7 +17,7 @@ interface paymentModalProps{
 
 const PaymentModal:  React.FC<paymentModalProps> = ({user, seats, grandTotal, showTimeId }) =>{
     
-    
+    const navigator = useNavigate();
     const [modalOpened, { open: openModal, close: closeModal }] = useDisclosure(false);
     const isMobile = useMediaQuery('(max-width: 50em)');
     const rewardPoints = user?.rewardPoints || 0;
@@ -40,7 +41,10 @@ const PaymentModal:  React.FC<paymentModalProps> = ({user, seats, grandTotal, sh
                 response = await bookTicket(JSON.stringify({...initialPaymentValues, modeOfPayment: modeOfPayment}));
             else
                 response = await  bookTicket(JSON.stringify({...initialPaymentValues, modeOfPayment: modeOfPayment, cardDetails: {...defaultCardDetails}  }));
-            console.log(response)
+            const {ticket} = response.data;
+            const {transactionId } = ticket;
+            console.log("This is the transaction id ",transactionId);
+            navigator(`/payment/${transactionId}`);
         } catch(error){
             console.log(error);
         }

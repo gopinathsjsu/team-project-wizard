@@ -73,3 +73,7 @@ export const getScreenBooking = (screenId: string) =>{
 export const bookTicket = (payment: string) =>{
   return apiClient.post('tickets/book', payment);
 }
+
+export const getTicketByTransaction = (transactionId: string = "") =>{
+  return apiClient.get(`tickets/getByTransactionId/${transactionId}`);
+}
