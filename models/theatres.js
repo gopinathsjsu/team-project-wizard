@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 
 
 const theatreSchema = new mongoose.Schema({
-  // theatreId: {
-  //   type: String 
-  // },
   theatreName: {
     type: String 
   },
