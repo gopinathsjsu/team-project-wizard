@@ -153,20 +153,20 @@ router.post('/updateProfile', async (req, res) => {
     }
 });
 
-// router.get('/purchaseHistory/:id', async (req, res) => {
-//     try {
-//         const ticketsPurchased = await Ticket.find({ userId: req.params.id, isActive: true});
+router.get('/purchaseHistory/:id', async (req, res) => {
+    try {
+        const ticketsPurchased = await Ticket.find({ userId: req.params.id, isActive: true});
 
-//         if (!ticketsPurchased) {
-//             res.json({ message: "0 Record[s] found", status: HTTP_STATUS_CODES.OK, data: [] });
-//         } else {
-//             res.json({ message: "Record[s] found", status: HTTP_STATUS_CODES.OK, data: ticketsPurchased });
-//         }
-//     } catch (error) {
-//         console.error('Error fetching purchase history:', error);
-//         res.status(500).json({ message: "Internal Server Error" });
-//     }
-// });
+        if (!ticketsPurchased) {
+            res.json({ message: "0 Record[s] found", status: HTTP_STATUS_CODES.OK, data: [] });
+        } else {
+            res.json({ message: "Record[s] found", status: HTTP_STATUS_CODES.OK, data: ticketsPurchased });
+        }
+    } catch (error) {
+        console.error('Error fetching purchase history:', error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
 
 // router.post('/upgradeMembership', async (req, res) => {
 //     try {
