@@ -2,9 +2,6 @@ const mongoose = require('mongoose');
 
 
 const movieSchema = new mongoose.Schema({
-  // movieId: { 
-  //   type: String
-  // },
   title: {
     type: String
   },
