@@ -4,10 +4,11 @@ import { useForm } from '@mantine/form';
 import BasicAppShell from '../Components/Layouts/Onboarding';
 import { IconArrowNarrowRight, IconUserPlus } from '@tabler/icons-react';
 import { signupUser } from '../api/moviesApi';
+import { useNavigate } from 'react-router-dom';
 
 function Signup() {
   const [active, setActive] = useState(0);
-
+  const navigator = useNavigate();
   const form = useForm({
     initialValues: {
       username: '',
@@ -52,8 +53,13 @@ function Signup() {
 
 
   const handleSignup = async () => {
-    const response = await signupUser(form.values);
-    console.log(response);
+    try{
+      const response = await signupUser(form.values);
+      console.log(response);
+      navigator('/home');
+    }catch(error){
+      console.log(error);
+    }
   }
   return (
     <BasicAppShell>
