@@ -42,7 +42,7 @@ const screenSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    occupancyStatus: {
+    occupancyStatus: { 
         type: [String],
     },
     isActive: {
