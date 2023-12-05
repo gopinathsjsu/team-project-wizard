@@ -185,6 +185,7 @@ router.post('/cancel', async (req, res) => {
                 let seatIndex = seats[row].findIndex(s => s.col === selectedSeat.col);
                 if (seatIndex !== -1) {
                     seats[row][seatIndex].isAvailable = true;
+                    seats[row][seatIndex].isSelected = false;
                     delete seats[row][seatIndex].userId;
                 }
             });
