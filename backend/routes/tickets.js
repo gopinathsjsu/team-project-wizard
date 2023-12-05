@@ -108,6 +108,7 @@ router.post('/book', async (req, res) => {
             showTime: showTime.startTime,
             showTimeId: showTime._id,
             totalCost: totalCost,
+            bookingDate: Date.now(),
             numberOfSeats: ticketCount,
             transactionId: newPayment.transactionId,
             qrUrls: [],
