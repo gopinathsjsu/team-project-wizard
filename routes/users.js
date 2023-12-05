@@ -168,47 +168,47 @@ router.get('/purchaseHistory/:id', async (req, res) => {
     }
 });
 
-// router.post('/upgradeMembership', async (req, res) => {
-//     try {
-//         const { userId, cardDetails, modeOfPayment } = req.body; // I dunno if reward point can be used to upgrade membership
+router.post('/upgradeMembership', async (req, res) => {
+    try {
+        const { userId, cardDetails, modeOfPayment } = req.body; // I dunno if reward point can be used to upgrade membership
 
-//         if (!userId) {
-//             return res.status(400).json({ message: 'User ID is required' });
-//         }
+        if (!userId) {
+            return res.status(400).json({ message: 'User ID is required' });
+        }
 
-//         const user = await User.findById(userId);
-//         if (!user) {
-//             return res.status(404).json({ message: 'User not found' });
-//         }
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
 
-//         if (user.memberShipType === 'premium') {
-//             return res.status(400).json({ message: 'User is already a premium member' });
-//         }
+        if (user.memberShipType === 'premium') {
+            return res.status(400).json({ message: 'User is already a premium member' });
+        }
 
-//         // Payment gateway integration?
-//         const paymentSuccessful = true; //
+        // Payment gateway integration?
+        const paymentSuccessful = true; //
 
-//         if (!paymentSuccessful) {
-//             return res.status(400).json({ message: 'Payment failed' });
-//         }
+        if (!paymentSuccessful) {
+            return res.status(400).json({ message: 'Payment failed' });
+        }
 
-//         const newPayment = new Payment({
-//             transactionId: mongoose.Types.ObjectId(),
-//             cardDetails, 
-//             status: 'completed',
-//             userId,
-//             modeOfPayment
-//         });
+        const newPayment = new Payment({
+            transactionId: mongoose.Types.ObjectId(),
+            cardDetails, 
+            status: 'completed',
+            userId,
+            modeOfPayment
+        });
 
-//         await newPayment.save();
-//         user.memberShipType = 'premium';
-//         await user.save();
+        await newPayment.save();
+        user.memberShipType = 'premium';
+        await user.save();
 
-//         res.json({ message: 'Membership upgraded to premium successfully',status: HTTP_STATUS_CODES.OK, user });
-//     } catch (error) {
-//         console.error('Error in upgrading membership:', error);
-//         res.status(500).json({ message: 'Internal Server Error' });
-//     }
-// });
+        res.json({ message: 'Membership upgraded to premium successfully',status: HTTP_STATUS_CODES.OK, user });
+    } catch (error) {
+        console.error('Error in upgrading membership:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
 module.exports = router;
