@@ -22,19 +22,24 @@ const ticketSchema = new mongoose.Schema({
         type: Date,
         default: Date.now
     },
+    showTimeId: {
+        type: String,
+        required: true
+
+    },
     seats: {
         type: String,
         required: true
     },
     numberOfSeats: {
         type: Number,
-        required:true
+        required: true
     },
     qrUrls: {
         type: [String], // Change the type to string
         required: true
     },
-    totalCost:{
+    totalCost: {
         type: Number,
         required: true
     },

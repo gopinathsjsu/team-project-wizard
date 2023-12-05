@@ -3,7 +3,8 @@ const express = require('express')
 const router = express.Router();
 const Screen = require('../models/screens');
 const ShowTime = require('../models/showTimes');
-const { HTTP_STATUS_CODES } = require('../constants')
+const { HTTP_STATUS_CODES } = require('../constants');
+const defaultSeats = require('../Helpers/defaultSeats');
 
 router.post('/add', async (req, res) => {
     try {
@@ -11,14 +12,20 @@ router.post('/add', async (req, res) => {
         const startTime = new Date(payload.startTime); // Convert startTime to a Date object
         const endTime = new Date(startTime.getTime() + 2 * 60 * 60 * 1000 + 30 * 60 * 1000);
 
+        const screen = await Screen.findById(payload.screenId);
+        if (!screen) {
+            return res.status(404).json({ message: 'Screen not found' });
+        }
+
         const newShowTime = new ShowTime({
             movieId: payload.movieId,
             screenId: payload.screenId,
             startTime: startTime,
+            seatsAvailable: screen.seatingCapacity,
             endTime: endTime,
             price: payload.price,
             discountPrice: payload.discountPrice,
-            seatsBooked: "",
+            seats: JSON.stringify(defaultSeats),
             isActive: true
         });
 
@@ -54,7 +61,7 @@ router.get('/get/:id', async (req, res) => {
     try {
         let id = req.params.id;
 
-        let showTime = await ShowTime.find({ _id: id, isActive: true});
+        let showTime = await ShowTime.find({ _id: id, isActive: true });
 
         res.json({
             message: 'Record found',
@@ -72,7 +79,7 @@ router.get('/getAllMovies/:movieId', async (req, res) => {
     try {
         let movieId = req.params.movieId;
 
-        let showTimesOfMovie = await ShowTime.find({ movieId: movieId, isActive: true});
+        let showTimesOfMovie = await ShowTime.find({ movieId: movieId, isActive: true });
 
         res.json({
             message: 'Records found',
@@ -90,7 +97,7 @@ router.get('/getAllScreens/:screenId', async (req, res) => {
     try {
         let screenId = req.params.screenId;
 
-        let showTimesOfScreen = await ShowTime.find({ screenId: screenId, isActive: true});
+        let showTimesOfScreen = await ShowTime.find({ screenId: screenId, isActive: true });
 
         res.json({
             message: 'Records found',
@@ -129,7 +136,7 @@ router.post('/update/:id', async (req, res) => {
 router.post('/delete/:id', async (req, res) => {
     try {
         if (req.params.id) {
-            await ShowTime.findByIdAndUpdate( req.params.id, {isActive: false });
+            await ShowTime.findByIdAndUpdate(req.params.id, { isActive: false });
             res.json({ message: "Record deleted", status: HTTP_STATUS_CODES.OK });
         } else {
             res.status(500).send('id is required!!!');

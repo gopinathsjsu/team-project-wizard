@@ -34,14 +34,14 @@ const screenSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
-    seatsAvailable: {
-        type: Number,
-        required: true
-    },
-    seats: {
-        type: String,
-        required: true
-    },
+    // seatsAvailable: {
+    //     type: Number,
+    //     required: true
+    // },
+    // seats: {
+    //     type: String,
+    //     required: true
+    // },
     occupancyStatus: { 
         type: [String],
     },
