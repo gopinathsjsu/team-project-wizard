@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import MovieBanner from './MovieBanner/index';
+import MovieBanner from '../../Components/Movie/MovieBanner';
 import { Movie } from '../../Interfaces/MovieInterface';
 import { getAllMovies } from '../../api/moviesApi';
 import { Center, Flex } from '@mantine/core';
 import { Carousel } from '@mantine/carousel';
-import MembershipBanner from './MembershipBanner';
+import MembershipBanner from '../../Components/Movie/MembershipBanner';
 import { useLocalStorage } from "@mantine/hooks";
 import { User } from '../../Interfaces/UserInterface';
 import { useParams } from 'react-router-dom';
@@ -19,6 +19,7 @@ const MovieListing = () => {
 
 
   useEffect(() => {
+    console.log(moviedetail)
     getAllMovies()
       .then(response => {
         console.log("Getting Movies ", response.data)

@@ -3,6 +3,7 @@ import MovieListing from '../Components/Movie/MovieListing'
 
 
 function home() {
+
   return (
     <BaseLayout>
       <MovieListing />
