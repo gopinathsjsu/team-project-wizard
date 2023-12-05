@@ -124,34 +124,34 @@ router.get('/viewProfile/:id', async (req, res) => {
 
 })
 
-// router.post('/updateProfile', async (req, res) => {
-//     try {
-//         console.log(req.body);
-//         const payload = req.body;
-//         const user = await User.findOne({ email: payload.email });
-//         console.log(user);
-//         if (user) {
-//             user.firstName = payload.firstName
-//             user.lastName = payload.lastName
-//             user.dob = payload.birthDate
-//             user.gender = payload.gender
-//             user.mobile = payload.mobile
-//             user.genres = []
-//             user.memberShipType = payload.memberShipType ? payload.memberShipType : 'none'
-//             user.role = payload.role ? payload.role : 'non-member'
-//             // if (req.file)
-//             //     user.profileUrl = req.file.location
-//             user.favouriteArtists = [];
-//             await user.save();
-//             res.json({ message: "User details updated successfully", status: HTTP_STATUS_CODES.OK });
-//         } else {
-//             res.json({ message: "Cannot update user details", status: HTTP_STATUS_CODES.NOT_FOUND });
-//         }
-//     } catch (error) {
-//         console.error('Error while updating profile:', error);
-//         res.status(500).json({ message: "Internal Server Error" });
-//     }
-// });
+router.post('/updateProfile', async (req, res) => {
+    try {
+        console.log(req.body);
+        const payload = req.body;
+        const user = await User.findOne({ email: payload.email });
+        console.log(user);
+        if (user) {
+            user.firstName = payload.firstName
+            user.lastName = payload.lastName
+            user.dob = payload.birthDate
+            user.gender = payload.gender
+            user.mobile = payload.mobile
+            user.genres = []
+            user.memberShipType = payload.memberShipType ? payload.memberShipType : 'none'
+            user.role = payload.role ? payload.role : 'non-member'
+            // if (req.file)
+            //     user.profileUrl = req.file.location
+            user.favouriteArtists = [];
+            await user.save();
+            res.json({ message: "User details updated successfully", status: HTTP_STATUS_CODES.OK });
+        } else {
+            res.json({ message: "Cannot update user details", status: HTTP_STATUS_CODES.NOT_FOUND });
+        }
+    } catch (error) {
+        console.error('Error while updating profile:', error);
+        res.status(500).json({ message: "Internal Server Error" });
+    }
+});
 
 // router.get('/purchaseHistory/:id', async (req, res) => {
 //     try {
