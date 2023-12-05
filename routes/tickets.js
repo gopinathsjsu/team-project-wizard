@@ -206,23 +206,23 @@ router.get('/getAll', async (req, res) => {
     }
 });
 
-// router.get('/getByUserId/:userId', async (req, res) => {
-//     try {
-//         const { userId } = req.params;
-//         if (!userId) {
-//             return res.status(400).json({ message: 'User ID is required' });
-//         }
+router.get('/getByUserId/:userId', async (req, res) => {
+    try {
+        const { userId } = req.params;
+        if (!userId) {
+            return res.status(400).json({ message: 'User ID is required' });
+        }
 
-//         const tickets = await Ticket.find({ userId: userId });
-//         if (!tickets || tickets.length === 0) {
-//             return res.status(404).json({ message: 'No tickets found for this user' });
-//         }
+        const tickets = await Ticket.find({ userId: userId });
+        if (!tickets || tickets.length === 0) {
+            return res.status(404).json({ message: 'No tickets found for this user' });
+        }
 
-//         res.json({ message: 'Tickets retrieved successfully', status: HTTP_STATUS_CODES.OK, tickets });
-//     } catch (error) {
-//         console.error('Error fetching tickets:', error);
-//         res.status(500).json({ message: 'Internal Server Error' });
-//     }
-// });
+        res.json({ message: 'Tickets retrieved successfully', status: HTTP_STATUS_CODES.OK, tickets });
+    } catch (error) {
+        console.error('Error fetching tickets:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
 module.exports = router;
