@@ -48,52 +48,52 @@ router.post('/signup', async (req, res) => {
     }
 })
 
-// router.post("/login", async (req, res) => {
-//     try {
-//         const payload = req.body;
-//         email = payload.email;
-//         password = payload.password;
-//         const users = await User.find({ email: email });
-//         console.log(users[0]);
-//         // users_obj = JSON.parse(users);
-//         // console.log(users_obj.password);
-//         if (users.length === 0) {
-//             res.json({
-//                 message: 'user not found',
-//                 status: HTTP_STATUS_CODES.NOT_FOUND
-//             })
-//         }
-//         else {
-//             let token = createToken(req, res, email, password);
-//             users[0]._doc.token = token;
-//             console.log(res.getHeaders()['set-cookie']);
-//             password_match = await bcrypt.compare(password, users[0].password)
-//             if (password_match) {
-//                 res.json({
-//                     message: 'user found',
-//                     status: HTTP_STATUS_CODES.OK,
-//                     data: users[0]
-//                 })
-//             }
-//             else {
-//                 res.json({
-//                     message: 'password incorrect',
-//                     status: HTTP_STATUS_CODES.NOT_FOUND,
-//                     data: data
-//                 })
-//             }
+router.post("/login", async (req, res) => {
+    try {
+        const payload = req.body;
+        email = payload.email;
+        password = payload.password;
+        const users = await User.find({ email: email });
+        console.log(users[0]);
+        // users_obj = JSON.parse(users);
+        // console.log(users_obj.password);
+        if (users.length === 0) {
+            res.json({
+                message: 'user not found',
+                status: HTTP_STATUS_CODES.NOT_FOUND
+            })
+        }
+        else {
+            let token = createToken(req, res, email, password);
+            users[0]._doc.token = token;
+            console.log(res.getHeaders()['set-cookie']);
+            password_match = await bcrypt.compare(password, users[0].password)
+            if (password_match) {
+                res.json({
+                    message: 'user found',
+                    status: HTTP_STATUS_CODES.OK,
+                    data: users[0]
+                })
+            }
+            else {
+                res.json({
+                    message: 'password incorrect',
+                    status: HTTP_STATUS_CODES.NOT_FOUND,
+                    data: data
+                })
+            }
 
-//         }
+        }
 
-//     }
-//     catch (error) {
-//         console.error('Error loggin in user', error);
-//         res.json({
-//             message: 'Uff..Somethin went wrong..Contact admin',
-//             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR
-//         })
-//     }
-// })
+    }
+    catch (error) {
+        console.error('Error loggin in user', error);
+        res.json({
+            message: 'Uff..Somethin went wrong..Contact admin',
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR
+        })
+    }
+})
 
 // router.get('/viewProfile/:id', async (req, res) => {
 //     try {
