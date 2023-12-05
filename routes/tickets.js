@@ -123,88 +123,88 @@ router.post('/book', async (req, res) => {
     }
 });
 
-// router.post('/cancel', async (req, res) => {
-//     try {
-//         const { userId } = req.body;
+router.post('/cancel', async (req, res) => {
+    try {
+        const { userId } = req.body;
 
-//         if (!userId) {
-//             return res.status(400).json({ message: 'User ID is required' });
-//         }
+        if (!userId) {
+            return res.status(400).json({ message: 'User ID is required' });
+        }
 
-//         const ticket = await Ticket.findOne({userId: userId});
-//         if (!ticket) {
-//             return res.status(404).json({ message: 'Ticket not found' });
-//         }
+        const ticket = await Ticket.findOne({userId: userId});
+        if (!ticket) {
+            return res.status(404).json({ message: 'Ticket not found' });
+        }
 
-//         const currentTime = new Date();
-//         if (currentTime >= ticket.showTime) {
-//             return res.status(400).json({ message: 'Cancellation is not allowed past the showtime' });
-//         }
+        const currentTime = new Date();
+        if (currentTime >= ticket.showTime) {
+            return res.status(400).json({ message: 'Cancellation is not allowed past the showtime' });
+        }
 
-//         const payment = await Payment.findOne({ transactionId: ticket.transactionId });
-//         if (!payment) {
-//             return res.status(404).json({ message: 'Associated payment record not found' });
-//         }
+        const payment = await Payment.findOne({ transactionId: ticket.transactionId });
+        if (!payment) {
+            return res.status(404).json({ message: 'Associated payment record not found' });
+        }
 
-//         if (payment.modeOfPayment === 'card') {
-//             // refund processing with payment gateway?
-//             const refundSuccessful = true;
+        if (payment.modeOfPayment === 'card') {
+            // refund processing with payment gateway?
+            const refundSuccessful = true;
 
-//             if (!refundSuccessful) {
-//                 return res.status(400).json({ message: 'Refund failed' });
-//             }
+            if (!refundSuccessful) {
+                return res.status(400).json({ message: 'Refund failed' });
+            }
 
-//             payment.status = 'refunded';
-//             await payment.save();
+            payment.status = 'refunded';
+            await payment.save();
 
-//         } else if (payment.modeOfPayment === 'points') {
-//             const user = await User.findById(ticket.userId);
-//             user.rewardPoints += Math.Floor(ticket.totalCost);
-//             await user.save();
-//             payment.status = 'refunded';
-//             await payment.save();
-//         }
+        } else if (payment.modeOfPayment === 'points') {
+            const user = await User.findById(ticket.userId);
+            user.rewardPoints += Math.Floor(ticket.totalCost);
+            await user.save();
+            payment.status = 'refunded';
+            await payment.save();
+        }
 
-//         ticket.isActive = false;
-//         await ticket.save();
+        ticket.isActive = false;
+        await ticket.save();
 
-//         const screen = await Screen.findById(ticket.screenId);
-//         if (!screen) {
-//             return res.status(404).json({ message: 'Screen not found' });
-//         }
+        const screen = await Screen.findById(ticket.screenId);
+        if (!screen) {
+            return res.status(404).json({ message: 'Screen not found' });
+        }
 
-//         let seats = JSON.parse(screen.seats);
-//         const selectedSeats = JSON.parse(ticket.seats);
-//         Object.keys(selectedSeats).forEach(row => {
-//             selectedSeats[row].forEach(selectedSeat => {
-//                 let seatIndex = seats[row].findIndex(s => s.col === selectedSeat.col);
-//                 if (seatIndex !== -1) {
-//                     seats[row][seatIndex].isAvailable = true;
-//                     delete seats[row][seatIndex].userId;
-//                 }
-//             });
-//         });
+        let seats = JSON.parse(screen.seats);
+        const selectedSeats = JSON.parse(ticket.seats);
+        Object.keys(selectedSeats).forEach(row => {
+            selectedSeats[row].forEach(selectedSeat => {
+                let seatIndex = seats[row].findIndex(s => s.col === selectedSeat.col);
+                if (seatIndex !== -1) {
+                    seats[row][seatIndex].isAvailable = true;
+                    delete seats[row][seatIndex].userId;
+                }
+            });
+        });
 
-//         screen.seats = JSON.stringify(seats);
-//         screen.seatsAvailable += ticket.numberOfSeats
-//         await screen.save();
+        screen.seats = JSON.stringify(seats);
+        screen.seatsAvailable += ticket.numberOfSeats
+        await screen.save();
 
-//         res.json({ message: 'Ticket cancelled successfully', status: HTTP_STATUS_CODES.OK });
-//     } catch (error) {
-//         console.error('Error while cancelling ticket:', error);
-//         res.status(500).json({ message: 'Internal Server Error' });
-//     }
-// });
+        res.json({ message: 'Ticket cancelled successfully', status: HTTP_STATUS_CODES.OK });
+    } catch (error) {
+        console.error('Error while cancelling ticket:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
-// router.get('/getAll', async (req, res) => {
-//     try {
-//         const tickets = await Ticket.find({});
-//         res.json({ message: 'Tickets retrieved successfully', status: HTTP_STATUS_CODES.OK, tickets });
-//     } catch (error) {
-//         console.error('Error fetching tickets:', error);
-//         res.status(500).json({ message: 'Internal Server Error' });
-//     }
-// });
+router.get('/getAll', async (req, res) => {
+    try {
+        const tickets = await Ticket.find({});
+        res.json({ message: 'Tickets retrieved successfully', status: HTTP_STATUS_CODES.OK, tickets });
+    } catch (error) {
+        console.error('Error fetching tickets:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
 
 // router.get('/getByUserId/:userId', async (req, res) => {
 //     try {
