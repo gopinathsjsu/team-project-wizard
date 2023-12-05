@@ -21,7 +21,7 @@ const showTimeSchema = new mongoose.Schema({
     price: { 
         type: Number
     },
-    discountPrice: { 
+    discountPrice: {  
         type: Number,
     },
     seatsBooked: {
