@@ -9,20 +9,23 @@ const showTimeSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
     },
-    startTime: { 
+    startTime: {
         type: Date,
     },
-    endTime: { 
+    endTime: {
         type: Date,
     },
-    price: { 
+    price: {
         type: Number
     },
-    discountPrice: {  
+    discountPrice: {
         type: Number,
     },
-    seatsBooked: {
+    seats: {
         type: String,
+    },
+    seatsAvailable: {
+        type: Number,
     },
     isActive: {
         type: Boolean,

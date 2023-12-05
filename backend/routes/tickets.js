@@ -83,7 +83,7 @@ router.post('/book', async (req, res) => {
             return res.status(400).json({ message: 'Invalid payment method' });
         }
 
-        let seats = JSON.parse(screen.seats);
+        let seats = JSON.parse(showTime.seats);
         Object.keys(selectedSeats).forEach(row => {
             selectedSeats[row].forEach(selectedSeat => {
                 if (selectedSeat.isSelected) {
@@ -97,15 +97,16 @@ router.post('/book', async (req, res) => {
             });
         });
 
-        screen.seats = JSON.stringify(seats);
-        screen.seatsAvailable -= ticketCount
-        await screen.save();
+        showTime.seats = JSON.stringify(seats);
+        showTime.seatsAvailable -= ticketCount
+        await showTime.save();
 
         const newTicket = new Ticket({
             userId: userId,
             movieId: showTime.movieId._id,
             screenId: showTime.screenId._id,
             showTime: showTime.startTime,
+            showTimeId: showTime._id,
             totalCost: totalCost,
             numberOfSeats: ticketCount,
             transactionId: newPayment.transactionId,
@@ -131,7 +132,7 @@ router.post('/cancel', async (req, res) => {
             return res.status(400).json({ message: 'User ID is required' });
         }
 
-        const ticket = await Ticket.findOne({userId: userId});
+        const ticket = await Ticket.findOne({ userId: userId });
         if (!ticket) {
             return res.status(404).json({ message: 'Ticket not found' });
         }
@@ -168,12 +169,12 @@ router.post('/cancel', async (req, res) => {
         ticket.isActive = false;
         await ticket.save();
 
-        const screen = await Screen.findById(ticket.screenId);
-        if (!screen) {
+        const showTime = await ShowTime.findById(ticket.showTimeId);
+        if (!showTime) {
             return res.status(404).json({ message: 'Screen not found' });
         }
 
-        let seats = JSON.parse(screen.seats);
+        let seats = JSON.parse(showTime.seats);
         const selectedSeats = JSON.parse(ticket.seats);
         Object.keys(selectedSeats).forEach(row => {
             selectedSeats[row].forEach(selectedSeat => {
@@ -185,9 +186,9 @@ router.post('/cancel', async (req, res) => {
             });
         });
 
-        screen.seats = JSON.stringify(seats);
-        screen.seatsAvailable += ticket.numberOfSeats
-        await screen.save();
+        showTime.seats = JSON.stringify(seats);
+        showTime.seatsAvailable += ticket.numberOfSeats
+        await showTime.save();
 
         res.json({ message: 'Ticket cancelled successfully', status: HTTP_STATUS_CODES.OK });
     } catch (error) {
