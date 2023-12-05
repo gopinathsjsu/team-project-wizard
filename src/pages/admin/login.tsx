@@ -1,7 +1,7 @@
 import '@mantine/core/styles.css';
 import { Container, PasswordInput, Text, Divider, Button, SimpleGrid, Center } from '@mantine/core';
 import InputBox from '../../Components/InputBox';
-import BasicAppShell from '../../Components/Layouts/Onboarding';
+import BaseLayout from '../../Components/Layouts/Onboarding';
 import { IconBrandGoogleFilled, IconBrandMeta } from '@tabler/icons-react';
 import { Link, useNavigate } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ const Index = () => {
     const navigate=useNavigate()
 
   return (
-    <BasicAppShell>
+    <BaseLayout>
       <Container px={0} size="30rem">
         <InputBox label={"Username or Email"} placeholder={"ex: john.doe@hotmail.com"} />
         <PasswordInput label={"Enter a password"} />
@@ -21,7 +21,7 @@ const Index = () => {
             navigate('/admin/home')
         }} >Login</Button>       
       </Container>
-    </BasicAppShell>
+    </BaseLayout>
   );
 }
 

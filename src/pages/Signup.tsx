@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { Stepper, Button, Group, TextInput, PasswordInput, Code, Container, Text, SegmentedControl, Center, Flex, Image, Stack, Transition, Title } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import BasicAppShell from '../Components/Layouts/Onboarding';
+import BaseLayout from '../Components/Layouts/BaseLayout';
 import { IconArrowNarrowRight, IconUserPlus } from '@tabler/icons-react';
 import { signupUser } from '../api/moviesApi';
 import { useNavigate } from 'react-router-dom';
+import { useLocalStorage } from '@mantine/hooks';
 
 function Signup() {
   const [active, setActive] = useState(0);
   const navigator = useNavigate();
+  const [user, setUser] = useLocalStorage({key:'userData'});
   const form = useForm({
     initialValues: {
       username: '',
@@ -55,15 +57,17 @@ function Signup() {
   const handleSignup = async () => {
     try{
       const response = await signupUser(form.values);
-      console.log(response);
+      const {data} = response.data;
+      setUser(data);
+      console.log(data);
       navigator('/home');
     }catch(error){
       console.log(error);
     }
   }
   return (
-    <BasicAppShell>
-      <Container px={0} size="40rem">
+    <BaseLayout>
+      <Container px={0} size="40rem" mt="lg">
 
         <Stepper active={active}>
           <Stepper.Step label="First step" description="Profile settings">
@@ -119,7 +123,7 @@ function Signup() {
           {active !== 3 && <Button onClick={nextStep}>Next step</Button>}
         </Group>
       </Container>
-    </BasicAppShell>
+    </BaseLayout>
   );
 }
 

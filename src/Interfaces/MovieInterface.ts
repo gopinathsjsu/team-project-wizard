@@ -23,5 +23,6 @@ export interface Movie {
   createdAt?: string;
   updatedAt?: string;
   __v?: number;
+  upcoming?: boolean
 }
   

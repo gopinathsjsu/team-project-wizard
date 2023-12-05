@@ -1,11 +1,11 @@
 import {  Button, TextInput, PasswordInput, Image, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import BasicAppShell from '../Components/Layouts/Onboarding';
 import { loginUser } from '../api/moviesApi';
 import { useLocalStorage } from '@mantine/hooks';
 import { useNavigate, useParams } from 'react-router-dom';
+import BaseLayout from '../Components/Layouts/BaseLayout';
 
-function Signup() {
+function Login() {
   const [user, setUser] = useLocalStorage({key:'userData'});
   const {callback} = useParams();
   const navigator = useNavigate();
@@ -39,7 +39,7 @@ function Signup() {
 
 
   return (
-    <BasicAppShell>
+    <BaseLayout>
     <Box maw={400} mx="auto">
         <Image
           h={300}
@@ -59,8 +59,8 @@ function Signup() {
         </Button>
       </form>
     </Box>
-    </BasicAppShell>
+    </BaseLayout>
   );
 }
 
-export default Signup;
+export default Login;

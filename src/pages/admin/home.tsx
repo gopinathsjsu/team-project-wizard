@@ -1,9 +1,9 @@
 import {  Container, Tabs, rem, } from '@mantine/core';
 import { IconPhoto, IconMessageCircle, IconSettings} from '@tabler/icons-react';
-import BasicAppShell from '../../Components/Layouts/Onboarding';
 import TheaterAdmin from '../../Components/Admin/TheaterAdmin';
 import ScreenAdmin from '../../Components/Admin/ScreenAdmin';
 import ShowTimeAdmin from '../../Components/Admin/ShowTimeAdmin';
+import BaseLayout from '../../Components/Layouts/BaseLayout';
 // import ShowTimeAdmin from '../../Components/Admin/ShowTimeAdmin';
 
 
@@ -19,12 +19,12 @@ function AdminHome() {
    
     return (
         <>
-            <BasicAppShell>
+            <BaseLayout>
                 <Container fluid>
-                    <Tabs defaultValue="theather">
+                    <Tabs defaultValue="Theater">
                         <Tabs.List justify="center">
-                            <Tabs.Tab value="theather" leftSection={<IconPhoto style={iconStyle} />}>
-                                Theather
+                            <Tabs.Tab value="Theater" leftSection={<IconPhoto style={iconStyle} />}>
+                                Theater
                             </Tabs.Tab>
                             <Tabs.Tab value="screens" leftSection={<IconMessageCircle style={iconStyle} />}>
                                 Screens
@@ -34,7 +34,7 @@ function AdminHome() {
                             </Tabs.Tab>
                         </Tabs.List>
 
-                        <Tabs.Panel value="theather">
+                        <Tabs.Panel value="Theater">
                             <TheaterAdmin></TheaterAdmin>
                         </Tabs.Panel>
                         <Tabs.Panel value="screens">
@@ -45,7 +45,7 @@ function AdminHome() {
                         </Tabs.Panel>
                     </Tabs>
                 </Container>
-            </BasicAppShell>
+            </BaseLayout>
         </>
 
     );

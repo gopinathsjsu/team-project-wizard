@@ -30,8 +30,11 @@ const DisplayShows: React.FC<DisplayShowsProps> = ({theatres}) => {
     })
     console.log("This is the shows array ",showsArray);
     showsArray.sort((a: Showtime, b: Showtime) => {
-      return new Date(a.startTime).getTime() - new Date(b.startTime).getTime();
-    });
+      const dateA = a.startTime ? new Date(a.startTime) : new Date();
+      const dateB = b.startTime ? new Date(b.startTime) : new Date();
+  
+      return dateA.getTime() - dateB.getTime();
+  });
     const theatreEntry = {...theatre, shows: showsArray};
     console.log(theatreEntry);
     return theatreEntry;
@@ -53,7 +56,7 @@ const DisplayShows: React.FC<DisplayShowsProps> = ({theatres}) => {
                     onClick={()=>handleNavigation(show.movieId, show._id, show.screenId)}
                     className={`secondry-button makePointer 
                     ${show.isActive? "success":"disabled"}`}>
-                    <Text size="sm">{convertTo12HourFormat(show.startTime)}</Text>
+                    <Text size="sm">{convertTo12HourFormat(show.startTime|| "")}</Text>
                     {show.screenType==="IMAX" && <Text size="xs">IMAX</Text>}
                   </button>
                 </Tooltip>
