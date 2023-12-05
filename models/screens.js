@@ -7,9 +7,6 @@ const status = {
 }
 
 const screenSchema = new mongoose.Schema({
-    // screenId: {
-    //     type: String,
-    // },
     screenType: {
         type: String,
         required: true
