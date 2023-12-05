@@ -138,18 +138,18 @@ router.post('/update/:id', async (req, res) => {
     }
 });
 
-// router.post('/delete/:id', async (req, res) => {
-//     try {
-//         if (req.params.id) {
-//             await Movie.findByIdAndUpdate( req.params.id, {isActive: false });
-//             res.json({ message: "Record deleted", status: HTTP_STATUS_CODES.OK });
-//         } else {
-//             res.status(500).send('id is required!!!');
-//         }
-//     } catch (error) {
-//         console.error('Error while deleting a movie:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// })
+router.post('/delete/:id', async (req, res) => {
+    try {
+        if (req.params.id) {
+            await Movie.findByIdAndUpdate( req.params.id, {isActive: false });
+            res.json({ message: "Record deleted", status: HTTP_STATUS_CODES.OK });
+        } else {
+            res.status(500).send('id is required!!!');
+        }
+    } catch (error) {
+        console.error('Error while deleting a movie:', error);
+        res.status(500).send('Internal Server Error');
+    }
+})
 
 module.exports = router;
