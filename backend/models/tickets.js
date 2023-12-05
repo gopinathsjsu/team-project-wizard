@@ -39,6 +39,10 @@ const ticketSchema = new mongoose.Schema({
         type: [String], // Change the type to string
         required: true
     },
+    bookingDate: {
+        type: Date,
+        required: true
+    },
     totalCost: {
         type: Number,
         required: true
