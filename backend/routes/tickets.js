@@ -232,4 +232,23 @@ router.get('/getByUserId/:userId', async (req, res) => {
     }
 });
 
+router.get('/getByTransactionId/:transactionId', async (req, res) => {
+    try {
+        const { transactionId } = req.params;
+        if (!transactionId) {
+            return res.status(400).json({ message: 'Transaction ID is required' });
+        }
+
+        const ticket = await Ticket.findOne({ transactionId: transactionId });
+        if (!ticket) {
+            return res.status(404).json({ message: 'No ticket found for this transaction' });
+        }
+
+        res.json({ message: 'Ticket retrieved successfully', status: HTTP_STATUS_CODES.OK, ticket });
+    } catch (error) {
+        console.error('Error fetching ticket:', error);
+        res.status(500).json({ message: 'Internal Server Error' });
+    }
+});
+
 module.exports = router;
