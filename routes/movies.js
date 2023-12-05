@@ -98,45 +98,45 @@ router.get('/get/:id', async (req, res) => {
     }
 });
 
-// router.post('/update/:id', async (req, res) => {
-//     try {
-//         const id = req.params.id;
-//         const payload = req.body;
+router.post('/update/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const payload = req.body;
 
-//         // Check if movieTrailerUrl is present in the payload
-//         if (payload.movieTrailerUrl) {
-//             // Apply the embedYoutubeUrlMiddleware
-//             embedYouTubeUrlMiddleware(req, res, () => {
-//                 // After the middleware has run, you can access the updated req.body
-//                 // The movieTrailerUrl will be converted to an embedded URL if it exists
-//                 if (id) {
-//                     // Now you can safely update the movie with the modified req.body
-//                     Movie.findByIdAndUpdate(id, req.body)
-//                         .then(() => {
-//                             res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK });
-//                         })
-//                         .catch((error) => {
-//                             console.error('Error while updating a movie:', error);
-//                             res.status(500).send('Internal Server Error');
-//                         });
-//                 } else {
-//                     res.status(500).send('movieId is required!!!');
-//                 }
-//             });
-//         } else {
-//             // If movieTrailerUrl is not present, you can update the movie without the middleware
-//             if (id) {
-//                 await Movie.findByIdAndUpdate(id, payload);
-//                 res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK });
-//             } else {
-//                 res.status(500).send('movieId is required!!!');
-//             }
-//         }
-//     } catch (error) {
-//         console.error('Error while updating a movie:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// });
+        // Check if movieTrailerUrl is present in the payload
+        if (payload.movieTrailerUrl) {
+            // Apply the embedYoutubeUrlMiddleware
+            embedYouTubeUrlMiddleware(req, res, () => {
+                // After the middleware has run, you can access the updated req.body
+                // The movieTrailerUrl will be converted to an embedded URL if it exists
+                if (id) {
+                    // Now you can safely update the movie with the modified req.body
+                    Movie.findByIdAndUpdate(id, req.body)
+                        .then(() => {
+                            res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK });
+                        })
+                        .catch((error) => {
+                            console.error('Error while updating a movie:', error);
+                            res.status(500).send('Internal Server Error');
+                        });
+                } else {
+                    res.status(500).send('movieId is required!!!');
+                }
+            });
+        } else {
+            // If movieTrailerUrl is not present, you can update the movie without the middleware
+            if (id) {
+                await Movie.findByIdAndUpdate(id, payload);
+                res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK });
+            } else {
+                res.status(500).send('movieId is required!!!');
+            }
+        }
+    } catch (error) {
+        console.error('Error while updating a movie:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 // router.post('/delete/:id', async (req, res) => {
 //     try {
