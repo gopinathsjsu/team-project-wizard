@@ -90,7 +90,7 @@ router.post('/book', async (req, res) => {
                     let seatIndex = seats[row].findIndex(s => s.col === selectedSeat.col);
                     if (seatIndex !== -1 && seats[row][seatIndex].isAvailable) {
                         seats[row][seatIndex].isAvailable = false;
-                        seats[row][seatIndex].isSelected = true;
+                        seats[row][seatIndex].isSelected = false;
                         seats[row][seatIndex].userId = userId;
                     }
                 }
