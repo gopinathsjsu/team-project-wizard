@@ -1,10 +1,13 @@
+import { useEffect } from 'react';
 import BaseLayout from '../../../../Components/Layouts/BaseLayout'
 import SeatMatrix from '../../../../Components/Booking';
 import { useState } from 'react';
 import { Seats } from '../../../../Interfaces/SeatInterface';
-import SeatDrawer from './SeatDrawer';
+import SeatDrawer from "../../../../Components/Booking/SeatDrawer/index"
 import { useLocalStorage } from '@mantine/hooks';
 import { User } from '../../../../Interfaces/UserInterface';
+import { getScreenBooking } from '../../../../api/moviesApi';
+import { useParams, useSearchParams } from 'react-router-dom';
 
 
 function MovieDetail() {
@@ -40,6 +43,22 @@ function MovieDetail() {
     ]
   });
   const [user, setUserData] = useLocalStorage<User>({key: "userData"});
+  const [searchParams] = useSearchParams();
+  const showId = searchParams.get('showId')
+  const screenId = searchParams.get('screenId')
+
+
+  const fetchScreenData = async () =>{
+    const response = await getScreenBooking(screenId || '');
+    console.log(response.data);
+    const { data } = response.data;
+    data?.seats && setSeats(data?.seats);
+    return data;
+  }
+
+  useEffect(()=>{
+    fetchScreenData();
+  },[])
 
   const handleSeatClick = (rowKey: string, colIndex: number) => {
     const updatedSeats = { ...seats };
@@ -53,7 +72,7 @@ function MovieDetail() {
   return (
     <BaseLayout>
       <SeatMatrix seats={seats} handleSeatClick={handleSeatClick}/>
-      <SeatDrawer seats={seats} price={18} user={user}/>
+      <SeatDrawer seats={seats} price={18} user={user} showTimeId={showId || ""} />
     </BaseLayout>
   )
 }

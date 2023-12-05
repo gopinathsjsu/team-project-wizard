@@ -65,3 +65,11 @@ export const signupUser = (signupData: NewUser)=>{
 export const loginUser = (loginData: LoginUser)=>{
   return apiClient.post(`user/login`,loginData);
 }
+
+export const getScreenBooking = (screenId: string) =>{
+  return apiClient.get(`screens/get/${screenId}`)
+}
+
+export const bookTicket = (payment: any) =>{
+  return apiClient.post('tickets/book', payment);
+}
