@@ -52,51 +52,51 @@ router.get('/getAll', async (req, res) => {
     }
 })
 
-// router.get('/get/:id', async (req, res) => {
-//     try {
-//         const movieId = req.params.id;
-//         const movie = await Movie.findById(movieId);
-//         if (!movie) {
-//             return res.status(404).json({ message: 'Movie not found' });
-//         }
+router.get('/get/:id', async (req, res) => {
+    try {
+        const movieId = req.params.id;
+        const movie = await Movie.findById(movieId);
+        if (!movie) {
+            return res.status(404).json({ message: 'Movie not found' });
+        }
 
-//         const theatres = await Theatre.find({}); // You can add conditions if needed
+        const theatres = await Theatre.find({}); // You can add conditions if needed
 
-//         // Iterate through theatres to fetch screens and showtimes
-//         const theatresWithScreensAndShowtimes = [];
-//         for (const theatre of theatres) {
-//             const screens = await Screen.find({ theatreId: theatre._id });
-//             const screensWithShowtimes = [];
+        // Iterate through theatres to fetch screens and showtimes
+        const theatresWithScreensAndShowtimes = [];
+        for (const theatre of theatres) {
+            const screens = await Screen.find({ theatreId: theatre._id });
+            const screensWithShowtimes = [];
 
-//             for (const screen of screens) {
-//                 const showtimes = await ShowTime.find({ screenId: screen._id, movieId });
-//                 if (showtimes.length > 0) {
-//                     screensWithShowtimes.push({
-//                         ...screen._doc,
-//                         showtimes,
-//                     });
-//                 }
-//             }
+            for (const screen of screens) {
+                const showtimes = await ShowTime.find({ screenId: screen._id, movieId });
+                if (showtimes.length > 0) {
+                    screensWithShowtimes.push({
+                        ...screen._doc,
+                        showtimes,
+                    });
+                }
+            }
 
-//             if (screensWithShowtimes.length > 0) {
-//                 theatresWithScreensAndShowtimes.push({
-//                     ...theatre._doc,
-//                     screens: screensWithShowtimes,
-//                 });
-//             }
-//         }
+            if (screensWithShowtimes.length > 0) {
+                theatresWithScreensAndShowtimes.push({
+                    ...theatre._doc,
+                    screens: screensWithShowtimes,
+                });
+            }
+        }
 
-//         const response = {
-//             movie,
-//             theatres: theatresWithScreensAndShowtimes,
-//         };
+        const response = {
+            movie,
+            theatres: theatresWithScreensAndShowtimes,
+        };
 
-//         res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK, data: response });
-//     } catch (error) {
-//         console.error('Error while updating a movie:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// });
+        res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK, data: response });
+    } catch (error) {
+        console.error('Error while updating a movie:', error);
+        res.status(500).send('Internal Server Error');
+    }
+});
 
 // router.post('/update/:id', async (req, res) => {
 //     try {
