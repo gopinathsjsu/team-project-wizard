@@ -42,15 +42,15 @@ app.use(
     // You can use the default in-memory store or choose another session store here
   }));
 
-app.use('/artist', ArtistRoute)
-app.use('/theatres', TheatreRoute)
-app.use('/screens', ScreenRoute)
-app.use('/showTimes', ShowTimesRoute)
-app.use('/movies', MovieRoute)
-app.use('/user', UserRoute)
-app.use('/payments', PaymentsRouter);
-app.use('/tickets', TicketsRouter);
-app.get('/home', (req, res) => {
+app.use('/api/artist', ArtistRoute)
+app.use('/api/theatres', TheatreRoute)
+app.use('/api/screens', ScreenRoute)
+app.use('/api/showTimes', ShowTimesRoute)
+app.use('/api/movies', MovieRoute)
+app.use('/api/user', UserRoute)
+app.use('/api/payments', PaymentsRouter);
+app.use('/api/tickets', TicketsRouter);
+app.get('/api/home', (req, res) => {
   res.json({ message: 'Hello World!' })
 })
 
