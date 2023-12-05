@@ -115,72 +115,72 @@ router.get('/getAll', async (req, res) => {
 });
 
 
-// router.get('/get/:id', async (req, res) => {
+router.get('/get/:id', async (req, res) => {
 
-//     try {
-//         const theatre = await Theatre.find({ _id: req.params.id, isActive: true });
-//         console.log(theatre);
+    try {
+        const theatre = await Theatre.find({ _id: req.params.id, isActive: true });
+        console.log(theatre);
 
-//         if (theatre.length) {
-//             const screens = await Screen.find({ theatreId: theatre[0]._doc._id, isActive: true });
+        if (theatre.length) {
+            const screens = await Screen.find({ theatreId: theatre[0]._doc._id, isActive: true });
 
-//             if (screens.length) {
-//                 theatre[0]._doc.screensList = screens;
-//             } else {
-//                 theatre[0]._doc.screensList = [];
-//             }
-//         } else {
-//             res.json({
-//                 message: 'No record found',
-//                 status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR
-//             })
-//         }
+            if (screens.length) {
+                theatre[0]._doc.screensList = screens;
+            } else {
+                theatre[0]._doc.screensList = [];
+            }
+        } else {
+            res.json({
+                message: 'No record found',
+                status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR
+            })
+        }
 
-//         res.json({
-//             message: 'Record found',
-//             status: HTTP_STATUS_CODES.OK,
-//             data: theatre
-//         })
+        res.json({
+            message: 'Record found',
+            status: HTTP_STATUS_CODES.OK,
+            data: theatre
+        })
 
-//     }
-//     catch (err) {
-//         console.log(err);
-//         res.json({
-//             message: 'Theatre Not found',
-//             status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,
-//             data: JSON.stringify("")
-//         })
-//     }
-// })
+    }
+    catch (err) {
+        console.log(err);
+        res.json({
+            message: 'Theatre Not found',
+            status: HTTP_STATUS_CODES.INTERNAL_SERVER_ERROR,
+            data: JSON.stringify("")
+        })
+    }
+})
 
-// router.post('/update/:id', async (req, res) => {
-//     try {
-//         const id = req.params.id;
-//         const payload = req.body;
-//         if (id) {
-//             await Theatre.findByIdAndUpdate({ _id: id, isActive: true }, payload);
-//             res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK });
-//         } else {
-//             res.status(500).send('movieId is required!!!');
-//         }
-//     } catch (error) {
-//         console.error('Error while updating a movie:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// })
+router.post('/update/:id', async (req, res) => {
+    try {
+        const id = req.params.id;
+        const payload = req.body;
+        if (id) {
+            await Theatre.findByIdAndUpdate({ _id: id, isActive: true }, payload);
+            res.json({ message: "Record updated", status: HTTP_STATUS_CODES.OK });
+        } else {
+            res.status(500).send('movieId is required!!!');
+        }
+    } catch (error) {
+        console.error('Error while updating a movie:', error);
+        res.status(500).send('Internal Server Error');
+    }
+})
 
-// router.post('/delete/:id', async (req, res) => {
-//     try {
-//         if (req.params.id) {
-//             await Theatre.findByIdAndUpdate( req.params.id, { isActive: false });
-//             res.json({ message: "Record deleted", status: HTTP_STATUS_CODES.OK });
-//         } else {
-//             res.status(500).send('id is required!!!');
-//         }
-//     } catch (error) {
-//         console.error('Error while deleting a movie:', error);
-//         res.status(500).send('Internal Server Error');
-//     }
-// })
+router.post('/delete/:id', async (req, res) => {
+    try {
+        if (req.params.id) {
+            await Theatre.findByIdAndUpdate( req.params.id, { isActive: false });
+            res.json({ message: "Record deleted", status: HTTP_STATUS_CODES.OK });
+        } else {
+            res.status(500).send('id is required!!!');
+        }
+    } catch (error) {
+        console.error('Error while deleting a movie:', error);
+        res.status(500).send('Internal Server Error');
+    }
+})
 
 module.exports = router; 
