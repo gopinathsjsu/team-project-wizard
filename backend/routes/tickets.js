@@ -136,10 +136,10 @@ router.post('/cancel', async (req, res) => {
             return res.status(404).json({ message: 'Ticket not found' });
         }
 
-        const currentTime = new Date();
-        if (currentTime >= ticket.showTime) {
-            return res.status(400).json({ message: 'Cancellation is not allowed past the showtime' });
-        }
+        // const currentTime = new Date();
+        // if (currentTime >= ticket.showTime) {
+        //     return res.status(400).json({ message: 'Cancellation is not allowed past the showtime' });
+        // }
 
         const payment = await Payment.findOne({ transactionId: ticket.transactionId });
         if (!payment) {
