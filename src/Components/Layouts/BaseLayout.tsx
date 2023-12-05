@@ -1,28 +1,31 @@
-import { AppShell, Container, Group, } from '@mantine/core';
+import { AppShell, Avatar, Button, Container, Group, } from '@mantine/core';
 
 import classes from './header.module.css';
 
 import ShowizLogo from './showizLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useLocalStorage } from '@mantine/hooks';
 
 
 const links = [
-  { link: '/about', label: 'About' },
+  { link: '/home', label: 'Home' },
+  { link: '/theaters', label: 'Theaters' },
   { link: '/pricing', label: 'Pricing' },
   { link: '/learn', label: 'Learn' },
-  { link: '/community', label: 'Community' },
 ]
 
-export function BaseLayout(props: React.PropsWithChildren<any>) {
+const Header = () => {
+  const [active, setActive] = useState('/home');
   const navigate = useNavigate();
-  const [active, setActive] = useState(links[0].link);
+  const [user, setUser] = useLocalStorage('userData');
 
   const items = links.map((link) => (
-    <a
+    <Button
       key={link.label}
-      href={link.link}
-      className={classes.link}
+      // href={link.link}
+      className={classes.link + ' ' + 'change-on-hover'}
+      variant="subtle"
       data-active={active === link.link || undefined}
       onClick={(event) => {
         event.preventDefault();
@@ -30,22 +33,47 @@ export function BaseLayout(props: React.PropsWithChildren<any>) {
       }}
     >
       {link.label}
-    </a>
+    </Button>
   ));
+  console.log(user)
 
+  const isLoggedIn = !!user;
+
+  const getLoginAndSignupButtons = () => {
+    return (
+      <div style={{ display: 'flex' }}>
+        <Button onClick={() => navigate('/login')}>Login</Button>
+        <Button onClick={() => navigate('/signup')} variant='outline' style={{ marginLeft: 10 }}>Signup</Button>
+      </div>
+    );
+  }
+
+  const getAvatarUI = () => {
+    return <Avatar size="md" />
+  }
+  return (
+    <Container size="md" className={classes.inner}>
+      <div style={{ display: 'flex' }}>
+        <div onClick={() => navigate('/home')} style={{ display: 'flex' }}>
+          <img src={ShowizLogo} alt='Showiz' className={classes.headerIcon} />
+        </div>
+        <Group gap={20} visibleFrom="md">
+          {items}
+        </Group>
+      </div>
+      {!isLoggedIn ? getLoginAndSignupButtons() : getAvatarUI()}
+
+    </Container>
+  );
+}
+
+export function BaseLayout(props: React.PropsWithChildren<any>) {
   return (
     <AppShell
       header={{ height: { base: 48, sm: 60, lg: 76 } }}
     >
       <AppShell.Header>
-        <Container size="md" className={classes.inner}>
-          <div onClick={() => navigate('/home')} style={{ display: 'flex' }}>
-            <img src={ShowizLogo} alt='Showiz' className={classes.headerIcon} />
-          </div>
-          <Group gap={20} visibleFrom="md">
-            {items}
-          </Group>
-        </Container>
+        <Header />
       </AppShell.Header>
       <AppShell.Main>
         <div style={{ margin: "auto" }}>

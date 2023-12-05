@@ -14,8 +14,9 @@
 
 .headerIcon {
   cursor: pointer;
-  width: 80px;
-  height: 70px;
+  width: 90px;
+  height: 90px;
+  object-fit: contain;
 }
 
 .link {
@@ -28,10 +29,11 @@
   font-size: var(--mantine-font-size-sm);
   font-weight: 500;
 
+  padding: 8px 5px;
+
   [data-mantine-color-scheme] &[data-active] {
-    background-color: var(--mantine-color-blue-filled);
-    color: var(--mantine-color-white);
-    padding: 8px 5px;
+    /* background-color: "#f84464"; */
+    color: #f84464;
   }
 }
 
