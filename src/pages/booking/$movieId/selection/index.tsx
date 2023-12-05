@@ -47,12 +47,24 @@ function MovieDetail() {
   const showId = searchParams.get('showId')
   const screenId = searchParams.get('screenId')
 
+  function getSeatsForShowTime(data: any, showTimeId: string | null) {
+    // Find the showTime with the given _id
+    const showTime = data.showTimes.find((show: { _id: string; }) => show._id === showTimeId);
+  
+    if (showTime && showTime?.seats) {
+      const seats = JSON.parse(showTime.seats);
+      return seats;
+    }
+    return undefined;
+
+  }
 
   const fetchScreenData = async () =>{
     const response = await getScreenBooking(screenId || '');
     console.log(response.data);
     const { data } = response.data;
-    data?.seats && setSeats(data?.seats);
+    const newSeats = getSeatsForShowTime(data, showId);
+    newSeats && setSeats(newSeats);
     return data;
   }
 

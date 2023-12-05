@@ -24,7 +24,6 @@ const SeatMatrix: React.FC<seatMatrixProps> = ({seats, handleSeatClick}) => {
                 key={seat.col}
                 color={seat.isSelected ? 'green' : seat.isAvailable ? 'blue' : 'grey'}
                 onClick={() => handleSeatClick(rowKey, index)}
-                // style={{ marginRight: '5px' } : { marginRight: "40px" }}
                 className={(seat.col==="3" || seat.col=="9") ? "mr40": "mr5"}
               >
                 {rowKey}{seat.col}

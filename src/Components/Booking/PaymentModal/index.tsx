@@ -37,9 +37,9 @@ const PaymentModal:  React.FC<paymentModalProps> = ({user, seats, grandTotal, sh
         try{
             let response
             if(modeOfPayment!=="card")
-                response = await bookTicket({...initialPaymentValues, modeOfPayment: modeOfPayment});
+                response = await bookTicket(JSON.stringify({...initialPaymentValues, modeOfPayment: modeOfPayment}));
             else
-                response = await  bookTicket({...initialPaymentValues, modeOfPayment: modeOfPayment, cardDetails: {...defaultCardDetails}  });
+                response = await  bookTicket(JSON.stringify({...initialPaymentValues, modeOfPayment: modeOfPayment, cardDetails: {...defaultCardDetails}  }));
             console.log(response)
         } catch(error){
             console.log(error);

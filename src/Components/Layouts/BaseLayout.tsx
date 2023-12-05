@@ -6,29 +6,29 @@ import ShowizLogo from './showizLogo.png';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 import { useLocalStorage } from '@mantine/hooks';
+import { User } from '../../Interfaces/UserInterface';
 
 
 const links = [
   { link: '/home', label: 'Home' },
-  { link: '/theaters', label: 'Theaters' },
-  { link: '/pricing', label: 'Pricing' },
+  { link: '/theaters/listtheaters', label: 'Theaters' },
+  { link: '/managebookings/', label: 'Manage Bookings' },
   { link: '/learn', label: 'Learn' },
 ]
 
 const Header = () => {
   const [active, setActive] = useState('/home');
   const navigate = useNavigate();
-  const [user, setUser] = useLocalStorage('userData');
-
+  const [user, setUser] = useLocalStorage({key: 'userData'});
+  console.log("This is the user ",user);
   const items = links.map((link) => (
     <Button
       key={link.label}
-      // href={link.link}
       className={classes.link + ' ' + 'change-on-hover'}
       variant="subtle"
       data-active={active === link.link || undefined}
       onClick={(event) => {
-        event.preventDefault();
+        navigate('/theaters/listtheaters');
         setActive(link.link);
       }}
     >
@@ -49,6 +49,7 @@ const Header = () => {
   }
 
   const getAvatarUI = () => {
+
     return <Avatar size="md" />
   }
   return (

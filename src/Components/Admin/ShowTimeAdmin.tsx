@@ -12,8 +12,6 @@ const defaultShowTime = {
     _id: "",
     movieId: "",
     screenId: "",
-    startTime: "",
-    endTime: "",
     price: 0,
     discountPrice: 0,
     isActive: true,
@@ -176,7 +174,7 @@ function ShowTimeAdmin() {
                             value={selectedShowTime.startTime ? new Date(selectedShowTime.startTime) : new Date()}
                             onChange={(e)=>{
                                 console.log(e)
-                                setSelectedShowTime({ ...selectedShowTime, startTime: new Date(`${e}`).toISOString()??""})
+                                setSelectedShowTime({ ...selectedShowTime, startTime: new Date(`${e}`).toISOString() || ""})
                             }}
 
                         />

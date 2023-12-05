@@ -10,11 +10,10 @@ const defaultScreen = {
     screenType: "",
     seatingCapacity: 0,
     screenName: "",
-    rows: 0,
-    columns: 0,
+    rows: 13,
+    col: 12,
     cost: 0,
     theatreId: "",
-    seatArray: [], // Specify a more detailed type if available
     occupancyStatus: [], // Specify a more detailed type if available
     isActive: true,
     createdAt: "",
@@ -40,7 +39,7 @@ function ScreenAdmin() {
             <Table.Td>{element.screenName}</Table.Td>
             <Table.Td>{element.screenType}</Table.Td>
             <Table.Td>{element.rows}</Table.Td>
-            <Table.Td>{element.columns}</Table.Td>
+            <Table.Td>{element.col}</Table.Td>
             <Table.Td>{element.cost}</Table.Td>
             <Table.Td>
                 <ActionIcon variant="outline" aria-label="Settings" onClick={() => {
@@ -151,19 +150,13 @@ function ScreenAdmin() {
                             label="Rows"
                             placeholder="95126"
                             value={selectedScreen.rows}
-                            onChange={(event) => {
-                                setSelectedScreen({ ...selectedScreen, rows: parseInt(`${event}`) })
-                            }}
                         />
                     </Grid.Col>
                     <Grid.Col span={4}>
                         <NumberInput
                             label="Columns"
                             placeholder="95126"
-                            value={selectedScreen.columns}
-                            onChange={(event) => {
-                                setSelectedScreen({ ...selectedScreen, columns: parseInt(`${event}`) })
-                            }}
+                            value={selectedScreen.col}
                         />
                     </Grid.Col>
                     <Grid.Col span={4}>

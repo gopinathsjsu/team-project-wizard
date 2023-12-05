@@ -70,6 +70,6 @@ export const getScreenBooking = (screenId: string) =>{
   return apiClient.get(`screens/get/${screenId}`)
 }
 
-export const bookTicket = (payment: any) =>{
+export const bookTicket = (payment: string) =>{
   return apiClient.post('tickets/book', payment);
 }
