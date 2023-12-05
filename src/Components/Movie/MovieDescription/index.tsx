@@ -6,6 +6,8 @@ import { IconShare } from '@tabler/icons-react';
 import { handleOptionOverflow } from "../../../utils/String";
 import { useNavigate } from "react-router-dom";
 import { handleShareClick } from "../../../utils/share";
+import { useLocalStorage } from '@mantine/hooks';
+import { User } from "../../../Interfaces/UserInterface";
 
 const MovieDescription: React.FC<Movie> = 
 ({  title, 
@@ -20,10 +22,11 @@ const MovieDescription: React.FC<Movie> =
     certificate }) => {
 
     const navigator = useNavigate();
-
+    const [user, setUser] = useLocalStorage<User>({key:'userData'});
 
     const handleNavigation = () => {
-        navigator(`/booking/${_id}`);
+        console.log(user);
+        (user && user?.memberShipType) ?  navigator(`/booking/${_id}`) : navigator(`/login?callback=/booking/${_id}`);
     };
 
     return (

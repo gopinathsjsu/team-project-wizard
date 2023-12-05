@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react'
 import BaseLayout from '../../../Components/Layouts/BaseLayout'
 import MovieHeader from '../../../Components/Booking/ListShows/MovieCard';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Movie } from '../../../Interfaces/MovieInterface';
 import {getMovie} from "../../../api/moviesApi";
 import Loading from '../../../Components/Loading';
 import Calendar from '../../../Components/Booking/ListShows/Calendar';
 import DisplayShows from '../../../Components/Booking/ListShows/DisplayShows';
 import { Theatre } from '../../../Interfaces/TheatreInterface';
-
+import { useLocalStorage } from '@mantine/hooks';
+import { User } from '../../../Interfaces/UserInterface';
 
 function MovieDetail() {
   const currentDate = new Date();
@@ -17,7 +18,6 @@ function MovieDetail() {
   const [bookingDate, setBookingDate] = useState(currentDate);
   const [movie, setMovie] = useState<Movie>({title:"", _id:"", posterUrl: "", genres: []});
   const [theatres, setTheatres] = useState<Theatre[]>(defaultTheatres);
-
   useEffect(() => {
       getMovie(movieid)
       .then(response => {

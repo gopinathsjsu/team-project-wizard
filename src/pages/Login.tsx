@@ -2,15 +2,18 @@ import {  Button, TextInput, PasswordInput, Image, Box } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import BasicAppShell from '../Components/Layouts/Onboarding';
 import { loginUser } from '../api/moviesApi';
+import { useLocalStorage } from '@mantine/hooks';
+import { useNavigate, useParams } from 'react-router-dom';
 
 function Signup() {
-
+  const [user, setUser] = useLocalStorage({key:'userData'});
+  const {callback} = useParams();
+  const navigator = useNavigate();
   const form = useForm({
     initialValues: {
       email: '',
       password: '',
     },
-
     validate: (values) => {
         return {
           email: /^\S+@\S+$/.test(values.email) ? null : 'Invalid email',
@@ -23,9 +26,18 @@ function Signup() {
 
 
   const handleLogin = async () => {
-    const response = await loginUser(form.values);
-    console.log(response);
+    try{
+      const response = await loginUser(form.values);
+      const {data} = response?.data;
+      data && setUser(data);
+      callback ? navigator(callback): navigator('/home');
+
+    }catch(error){
+      console.log(error);
+    }
   }
+
+
   return (
     <BasicAppShell>
     <Box maw={400} mx="auto">

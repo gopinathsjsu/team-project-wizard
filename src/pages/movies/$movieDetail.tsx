@@ -7,11 +7,12 @@ import {getMovie} from "../../api/moviesApi";
 import YouTubeVideoEmbed from '../../Components/Video';
 import Loading from '../../Components/Loading';
 import { Center, Text, Flex, Group, Image, Spoiler, Stack, Title } from '@mantine/core';
+import { useLocalStorage } from '@mantine/hooks';
 
 function MovieDetail() {
   const {moviedetail} = useParams();
-    const [isLoading, setIsLoading] = useState(true);
-    const [movie, setMovie] = useState<Movie>({title:"", _id:"", posterUrl: "", genres: []});
+  const [isLoading, setIsLoading] = useState(true);
+  const [movie, setMovie] = useState<Movie>({title:"", _id:"", posterUrl: "", genres: []});
     
     const cast = ["https://pbs.twimg.com/profile_images/1653105772136390667/7CqRRhOA_400x400.jpg","https://pbs.twimg.com/profile_images/1634904704772890624/D-BtE-Fy_400x400.jpg","https://pbs.twimg.com/profile_images/1707670344654626816/1D9u5YrV_400x400.jpg", "https://pbs.twimg.com/profile_images/1011605600600354816/79-x6S9u_400x400.jpg"]
     

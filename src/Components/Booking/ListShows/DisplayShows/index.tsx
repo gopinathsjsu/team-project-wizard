@@ -19,14 +19,16 @@ const DisplayShows: React.FC<DisplayShowsProps> = ({theatres}) => {
   const theatresArray = theatres.map((theatre)=>{
       let showsArray: Showtime[] = [];
       theatre.screens.map((screen)=>{
-      showsArray = screen.showtimes.map((showtime)=>{
+      let tempShowsArray = screen.showtimes.map((showtime)=>{
         return {
         ...showtime, 
         screenType: screen.screenType,
         screenName: screen.screenName,
         isActive: screen.isActive
       }});
+      showsArray = showsArray.concat(tempShowsArray);
     })
+    console.log("This is the shows array ",showsArray);
     showsArray.sort((a: Showtime, b: Showtime) => {
       return new Date(a.startTime).getTime() - new Date(b.startTime).getTime();
     });
