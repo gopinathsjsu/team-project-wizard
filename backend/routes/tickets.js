@@ -205,7 +205,7 @@ router.post('/cancel', async (req, res) => {
 
 router.get('/getAll', async (req, res) => {
     try {
-        const tickets = await Ticket.find({});
+        const tickets = await Ticket.find({isActive: true});
         res.json({ message: 'Tickets retrieved successfully', status: HTTP_STATUS_CODES.OK, tickets });
     } catch (error) {
         console.error('Error fetching tickets:', error);
@@ -220,7 +220,7 @@ router.get('/getByUserId/:userId', async (req, res) => {
             return res.status(400).json({ message: 'User ID is required' });
         }
 
-        const tickets = await Ticket.find({ userId: userId });
+        const tickets = await Ticket.find({ userId: userId, isActive: true });
         if (!tickets || tickets.length === 0) {
             return res.status(404).json({ message: 'No tickets found for this user' });
         }
@@ -239,7 +239,7 @@ router.get('/getByTransactionId/:transactionId', async (req, res) => {
             return res.status(400).json({ message: 'Transaction ID is required' });
         }
 
-        const ticket = await Ticket.findOne({ transactionId: transactionId });
+        const ticket = await Ticket.findOne({ transactionId: transactionId, isActive: true });
         if (!ticket) {
             return res.status(404).json({ message: 'No ticket found for this transaction' });
         }
