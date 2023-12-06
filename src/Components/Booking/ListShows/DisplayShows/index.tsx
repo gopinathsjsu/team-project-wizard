@@ -3,7 +3,7 @@ import { Button, Container, Flex, Text, Tooltip } from '@mantine/core';
 import { Theatre } from '../../../../Interfaces/TheatreInterface';
 import { IconInfoCircle } from '@tabler/icons-react';
 import { Showtime } from '../../../../Interfaces/ShowTimeInterface';
-import { convertTo12HourFormat } from '../../../../utils/Date';
+import { before6PM, convertTo12HourFormat } from '../../../../utils/Date';
 import { useNavigate } from 'react-router-dom';
 interface DisplayShowsProps {
   theatres: Theatre[]
@@ -24,7 +24,7 @@ const DisplayShows: React.FC<DisplayShowsProps> = ({theatres}) => {
         ...showtime, 
         screenType: screen.screenType,
         screenName: screen.screenName,
-        isActive: screen.isActive
+        screenCost: screen.cost,
       }});
       showsArray = showsArray.concat(tempShowsArray);
     })
@@ -51,7 +51,7 @@ const DisplayShows: React.FC<DisplayShowsProps> = ({theatres}) => {
             </Flex>
             <Flex direction={"row"} gap="md" align="center" mb="sm">
               {theatre.shows.map((show)=>(
-                <Tooltip label={`$ ${show.price}`} transitionProps={{ transition: 'skew-down', duration: 400 }}>
+                <Tooltip label={`$ ${(show.screenCost || 15) - (before6PM(show.startTime || "") ? 3 : 0)}`} transitionProps={{ transition: 'skew-down', duration: 400 }}>
                   <button
                     onClick={()=>handleNavigation(show.movieId, show._id, show.screenId)}
                     className={`secondry-button makePointer 

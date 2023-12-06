@@ -28,7 +28,7 @@ const Header = () => {
       variant="subtle"
       data-active={active === link.link || undefined}
       onClick={(event) => {
-        navigate('/theaters/listtheaters');
+        navigate(link.link);
         setActive(link.link);
       }}
     >
@@ -73,7 +73,7 @@ export function BaseLayout(props: React.PropsWithChildren<any>) {
     <AppShell
       header={{ height: { base: 48, sm: 60, lg: 76 } }}
     >
-      <AppShell.Header>
+      <AppShell.Header bg="#333545">
         <Header />
       </AppShell.Header>
       <AppShell.Main>

@@ -8,7 +8,6 @@ export interface Ticket {
     showTimeId: string;
     seats: string; // This is a JSON string, you might want to parse it into a more structured type.
     numberOfSeats: number;
-    qrUrls: string[]; // Assuming this is an array of strings (URLs)
     bookingDate: string;
     totalCost: number;
     isActive: boolean;

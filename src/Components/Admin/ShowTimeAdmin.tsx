@@ -42,7 +42,6 @@ function ShowTimeAdmin() {
             <Table.Td>{screenMap[`${element.screenId}`]}</Table.Td>
             <Table.Td>{formatDate(element.startTime,true)}</Table.Td>
             <Table.Td>{formatDate(element.endTime,true)}</Table.Td>
-            <Table.Td>{element.price}</Table.Td>
             <Table.Td>
                 <ActionIcon variant="outline" aria-label="Settings" onClick={() => {
                     setSelectedShowTime(element)

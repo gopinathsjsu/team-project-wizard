@@ -12,4 +12,5 @@ export interface Showtime {
     __v: number;
     screenName?:  string;
     screenType?: string;
+    screenCost?: number
 }

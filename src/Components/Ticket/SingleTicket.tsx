@@ -9,10 +9,11 @@ interface TicketProps {
     totalCost: number;
     numberOfSeats: number;
     seats: string; // This should be parsed accordingly
-    qrCodeUrl: string; // URL for the QR code image
+    qrCodeUrl?: string; // URL for the QR code image
+    allowCancel?: boolean
 }
 
-const SingleTicket: React.FC<TicketProps> = ({ showTime, bookingDate, totalCost, numberOfSeats, seats, qrCodeUrl }) => {
+const SingleTicket: React.FC<TicketProps> = ({ showTime, bookingDate, totalCost, numberOfSeats, seats, qrCodeUrl, allowCancel }) => {
     // Function to copy ticket details to clipboard
 
     function getSelectedSeats() {
@@ -52,7 +53,8 @@ const SingleTicket: React.FC<TicketProps> = ({ showTime, bookingDate, totalCost,
                 <Badge color="pink" variant="light" mt={"md"}>
                     Enjoy your movie!
                 </Badge>
-                <Image src={qrCodeUrl} alt="QR Code" width={100} height={100} />
+                { qrCodeUrl && <Image src={qrCodeUrl} alt="QR Code" width={100} height={100} />}
+                { allowCancel && <Button mt="md" variant="light" >Cancel Booking</Button>}
             </Card>
         </Center>
     );

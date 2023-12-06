@@ -81,7 +81,7 @@ const SeatDrawer: React.FC<seatDrawerProps> = ({ seats, price, user, showTimeId 
                     {/* TO DO : Link learn more to get membership page */}
                   </>}
                 <br />
-                <PaymentModal user={user} seats={selectedSeats} grandTotal={grandTotal} showTimeId={showTimeId} />
+                <PaymentModal user={user} seats={selectedSeats} grandTotal={(user?.memberShipType === "regular") ? grandTotal : grandTotal + 1.5} showTimeId={showTimeId} />
               </Container>
             </>}
           </Drawer.Body>
