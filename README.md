@@ -20,3 +20,13 @@ Sameer's Journal
 Varshith's Journal
 
 [Varshith Project Journal.md](https://github.com/gopinathsjsu/team-project-wizard/files/13575522/Varshith.Project.Journal.md)
+
+**
+Architecture Diagram**
+
+![architectureD](https://github.com/gopinathsjsu/team-project-wizard/assets/60455498/0a0d50de-5dac-45e9-a9b0-170874e20776)
+
+**
+USE CASE Diagram**
+
+![USE CASE](https://github.com/gopinathsjsu/team-project-wizard/assets/60455498/2e0a9fc8-1834-41c2-b2fb-17324695d402)
