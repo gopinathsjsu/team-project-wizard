@@ -12,8 +12,7 @@ import { User } from '../../Interfaces/UserInterface';
 const links = [
   { link: '/home', label: 'Home' },
   { link: '/theaters/listtheaters', label: 'Theaters' },
-  { link: '/managebookings/', label: 'Manage Bookings' },
-  { link: '/learn', label: 'Learn' },
+  { link: '/managebookings/', label: 'Manage Bookings' }
 ]
 
 const Header = () => {
@@ -50,7 +49,7 @@ const Header = () => {
 
   const getAvatarUI = () => {
 
-    return <Avatar size="md" />
+    return <><Avatar size="md" /></>
   }
   return (
     <Container size="md" className={classes.inner}>

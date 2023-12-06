@@ -12,7 +12,6 @@ import LoginPagePrompt from '../../Components/Redirect/LoginPrompt';
 
 const PaymentsPage = () => {
     const [user, setUser]= useLocalStorage<User>({key: 'userData'});
-
     return (
         <BaseLayout>
             { user?._id ?  <PastTickets user={user}/> : <LoginPagePrompt />}

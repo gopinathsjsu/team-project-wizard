@@ -66,6 +66,10 @@ export const loginUser = (loginData: LoginUser)=>{
   return apiClient.post(`user/login`,loginData);
 }
 
+export const getUser = (userId: string) =>{
+  return apiClient.get(`user/viewProfile/${userId}`);
+}
+
 export const getScreenBooking = (screenId: string) =>{
   return apiClient.get(`screens/get/${screenId}`)
 }
@@ -83,5 +87,5 @@ export const getPastBookings = (userId: string ="")=>{
 }
 
 export const cancelBooking = (transaction: {transactionId: string}) =>{
-  return apiClient.post(`tickets/cancel`,transaction)
+  return apiClient.post(`tickets/cancel`,transaction);
 }

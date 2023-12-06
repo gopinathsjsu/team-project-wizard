@@ -1,6 +1,9 @@
 import React from 'react';
 import { Card, Text, Group, Button, Badge, Image, Center, CopyButton } from '@mantine/core';
 import { IconCopy } from '@tabler/icons-react';
+import { cancelBooking, getUser } from '../../api/moviesApi';
+import { useLocalStorage } from '@mantine/hooks';
+import { User } from '../../Interfaces/UserInterface';
 
 
 interface TicketProps {
@@ -10,12 +13,15 @@ interface TicketProps {
     numberOfSeats: number;
     seats: string; // This should be parsed accordingly
     qrCodeUrl?: string; // URL for the QR code image
-    allowCancel?: boolean
+    allowCancel?: boolean,
+    transactionId?: string,
+    userId?: string
 }
 
-const SingleTicket: React.FC<TicketProps> = ({ showTime, bookingDate, totalCost, numberOfSeats, seats, qrCodeUrl, allowCancel }) => {
+const SingleTicket: React.FC<TicketProps> = ({ showTime, bookingDate, totalCost, numberOfSeats, seats, qrCodeUrl, allowCancel, transactionId="", userId }) => {
     // Function to copy ticket details to clipboard
-
+    const [user, setUser]= useLocalStorage<User>({key: 'userData'});
+    
     function getSelectedSeats() {
         // Parse the JSON string
         const seatsObj = JSON.parse(seats);
@@ -29,6 +35,17 @@ const SingleTicket: React.FC<TicketProps> = ({ showTime, bookingDate, totalCost,
         }
     
         return selectedSeats.join(', ');
+    }
+
+    const handleCancellation = async () =>{
+        try{
+            const response = await cancelBooking({transactionId: transactionId});
+            const userResponse = await getUser(userId|| "");
+            setUser(userResponse?.data?.data[0]);
+        }catch(error){
+            console.log(error);
+        }
+
     }
 
     return (
@@ -54,7 +71,7 @@ const SingleTicket: React.FC<TicketProps> = ({ showTime, bookingDate, totalCost,
                     Enjoy your movie!
                 </Badge>
                 { qrCodeUrl && <Image src={qrCodeUrl} alt="QR Code" width={100} height={100} />}
-                { allowCancel && <Button mt="md" variant="light" >Cancel Booking</Button>}
+                { allowCancel && <Button mt="md" variant="light" onClick={handleCancellation} >Cancel Booking</Button>}
             </Card>
         </Center>
     );
