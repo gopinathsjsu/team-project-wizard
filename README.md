@@ -39,7 +39,6 @@ Varshith's Journal
 
 # **AGILE WIZARDS SPRINT SHEET**
 
-[Agile Wizards Sprint Sheet.xlsx](https://github.com/gopinathsjsu/team-project-wizard/files/13575574/Agile.Wizards.Sprint.Sheet.xlsx)
 
 # **COMPONENT DIAGRAM**
 
