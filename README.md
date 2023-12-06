@@ -24,8 +24,7 @@ Ruthvik's Journal
 [RUTHVIK proj journal.md](https://github.com/gopinathsjsu/team-project-wizard/files/13575482/RUTHVIK.proj.journal.md)
 
 Sameer's Journal
-
-[Sameer proj Journal.md](https://github.com/gopinathsjsu/team-project-wizard/files/13575518/Sameer.proj.Journal.md)
+[Sameer.proj.Journal.md](https://github.com/gopinathsjsu/team-project-wizard/files/13578140/Sameer.proj.Journal.md)
 
 Varshith's Journal
 
