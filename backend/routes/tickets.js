@@ -205,7 +205,7 @@ router.post('/cancel', async (req, res) => {
 
 router.get('/getAll', async (req, res) => {
     try {
-        const tickets = await Ticket.find({isActive: true});
+        const tickets = await Ticket.find({ isActive: true });
         res.json({ message: 'Tickets retrieved successfully', status: HTTP_STATUS_CODES.OK, tickets });
     } catch (error) {
         console.error('Error fetching tickets:', error);
@@ -220,9 +220,10 @@ router.get('/getByUserId/:userId', async (req, res) => {
             return res.status(400).json({ message: 'User ID is required' });
         }
 
-        const tickets = await Ticket.find({ userId: userId, isActive: true });
+        let tickets = await Ticket.find({ userId: userId, isActive: true });
         if (!tickets || tickets.length === 0) {
-            return res.status(404).json({ message: 'No tickets found for this user' });
+            tickets = []
+            return res.status(200).json({ message: 'No records found', status: HTTP_STATUS_CODES.OK, tickets });
         }
 
         res.json({ message: 'Tickets retrieved successfully', status: HTTP_STATUS_CODES.OK, tickets });
