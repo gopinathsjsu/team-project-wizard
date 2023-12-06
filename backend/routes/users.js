@@ -32,8 +32,9 @@ router.post('/signup', async (req, res) => {
             genres: [],
             profileUrl: '',
             favouriteArtists: [],
-            role: payload.role ? payload.role : 'non-member',
-            memberShipType: payload.memberShipType ? payload.memberShipType: 'regular',
+            // role: payload.role ? payload.role : 'non-member',
+            role: payload.memberShipType && payload.memberShipType === 'premium' ? 'member' : 'non-member',
+            memberShipType: payload.memberShipType ? payload.memberShipType : 'regular',
             isAdmin: payload.role && payload.role === 'admin' ? true : false,
             isPrime: payload.memberShipType && payload.memberShipType === 'premium' ? true : false,
             isActive: true
@@ -155,7 +156,7 @@ router.post('/updateProfile', async (req, res) => {
 
 router.get('/purchaseHistory/:id', async (req, res) => {
     try {
-        const ticketsPurchased = await Ticket.find({ userId: req.params.id, isActive: true});
+        const ticketsPurchased = await Ticket.find({ userId: req.params.id, isActive: true });
 
         if (!ticketsPurchased) {
             res.json({ message: "0 Record[s] found", status: HTTP_STATUS_CODES.OK, data: [] });
@@ -194,7 +195,7 @@ router.post('/upgradeMembership', async (req, res) => {
 
         const newPayment = new Payment({
             transactionId: mongoose.Types.ObjectId(),
-            cardDetails, 
+            cardDetails,
             status: 'completed',
             userId,
             modeOfPayment
@@ -204,7 +205,7 @@ router.post('/upgradeMembership', async (req, res) => {
         user.memberShipType = 'premium';
         await user.save();
 
-        res.json({ message: 'Membership upgraded to premium successfully',status: HTTP_STATUS_CODES.OK, user });
+        res.json({ message: 'Membership upgraded to premium successfully', status: HTTP_STATUS_CODES.OK, user });
     } catch (error) {
         console.error('Error in upgrading membership:', error);
         res.status(500).json({ message: 'Internal Server Error' });
