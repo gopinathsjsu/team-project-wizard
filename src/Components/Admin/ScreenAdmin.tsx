@@ -39,7 +39,7 @@ function ScreenAdmin() {
             <Table.Td>{element.screenName}</Table.Td>
             <Table.Td>{element.screenType}</Table.Td>
             <Table.Td>{element.rows}</Table.Td>
-            <Table.Td>{element.col}</Table.Td>
+            <Table.Td>12</Table.Td>
             <Table.Td>{element.cost}</Table.Td>
             <Table.Td>
                 <ActionIcon variant="outline" aria-label="Settings" onClick={() => {
@@ -156,7 +156,7 @@ function ScreenAdmin() {
                         <NumberInput
                             label="Columns"
                             placeholder="95126"
-                            value={selectedScreen.col}
+                            value={12}
                         />
                     </Grid.Col>
                     <Grid.Col span={4}>

@@ -81,3 +81,7 @@ export const getTicketByTransaction = (transactionId: string = "") =>{
 export const getPastBookings = (userId: string ="")=>{
   return apiClient.get(`tickets/getByUserId/${userId}`);
 }
+
+export const cancelBooking = (transaction: {transactionId: string}) =>{
+  return apiClient.post(`tickets/cancel`,transaction)
+}
