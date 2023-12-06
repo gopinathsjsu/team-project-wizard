@@ -1,7 +1,6 @@
 # CMPE 202 team-project-wizard
 team-project-wizard created by GitHub Classroom
 
-# **Members:**
 
 
 # **Starting the Backend**
