@@ -37,7 +37,6 @@ Varshith's Journal
 
 # **USE CASE Diagram**
 
-![USE CASE](https://github.com/gopinathsjsu/team-project-wizard/assets/60455498/2e0a9fc8-1834-41c2-b2fb-17324695d402)
 
 # **AGILE WIZARDS SPRINT SHEET**
 
