@@ -32,7 +32,7 @@ router.post('/book', async (req, res) => {
             ticketCount += selectedSeats[row].filter(seat => seat.isSelected).length;
         });
 
-        totalCost = showTime.price * ticketCount;
+        totalCost = screen.cost * ticketCount;
 
         let isPremiumMember = user.memberShipType === 'premium';
         if (!isPremiumMember) {
@@ -76,7 +76,7 @@ router.post('/book', async (req, res) => {
 
             await Payment.findByIdAndUpdate(newPayment._id, { status: 'completed' });
 
-            let pointsToAccumulate = isPremiumMember ? showTime.price * ticketCount : totalCost;
+            let pointsToAccumulate = isPremiumMember ? screen.cost * ticketCount : totalCost;
             user.rewardPoints += Math.floor(pointsToAccumulate);
             await user.save();
         } else {
