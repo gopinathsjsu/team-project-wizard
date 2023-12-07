@@ -19,7 +19,7 @@ https://github.com/gopinathsjsu/team-project-wizard.git
 | Varshith Pabbisetty | worked on Backend schemas and routes for users, artists, movies, theatres, and screens. |
 | Sameer Hannan | worked on front end archtiecture , home page, movie Description Page, The get show Times page, seat matrix page, and worked on diagrams and read me file. |
 | Ruthvik Kamarasu | worked on front end architecture, sign-up, login ui. Integration, with backend. The home page, movie Description Page, The get show Times page, seat matrix page, payment booking page, view ticket and view previous transactions. View rewards and cancel booking. |
-| Rohit Vardam | Worked on backend, schemas and routes for payments, tickets, showtimes and deployemnt of the project with auto-scaling & load-balancer in PM2|
+| Rohit Vardam | Worked on the backend, schemas and routes for payments, tickets, showtimes, including the backend logic for reward-points, refunds, and deployment of the project with auto-scaling & load-balancer in PM2.|
 
 
 
